@@ -105,12 +105,6 @@ body::after {
     gap: 20px;
 }
 
-/* На больших экранах возвращаем сайдбару ограничение ширины */
-@media (min-width: 750px) {
-    .sidebar { max-width: 250px; }
-    .sidebar-content { flex-direction: column; padding: 40px 20px; }
-}
-
 .avatar-container {
     width: 120px;
     height: 120px;
@@ -138,6 +132,10 @@ body::after {
     width: 100%;
     max-width: 550px;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    
+    /* Флекс для вертикального распределения элементов */
+    display: flex;
+    flex-direction: column;
 }
 
 header h1 {
@@ -153,7 +151,11 @@ section { margin-bottom: 20px; }
 section h2 { font-size: 1.1rem; margin-bottom: 10px; color: var(--bocchi-pink); border-bottom: 1px solid var(--glass-border); padding-bottom: 4px; display: inline-block; }
 section p { color: #d1d5db; line-height: 1.5; font-size: 0.9rem; }
 
-/* Стек */
+/* Стек технологий автоматически прижимается к низу карточки */
+.tech-stack {
+    margin-top: auto;
+    padding-top: 15px;
+}
 .tech-stack ul { list-style: none; display: flex; gap: 10px; flex-wrap: wrap; }
 .tech-stack li { display: flex; align-items: center; background: rgba(255, 255, 255, 0.06); border: 1px solid var(--glass-border); padding: 6px 14px; border-radius: 14px; font-size: 0.85rem; transition: all 0.2s ease; }
 .tech-stack li:hover {
@@ -297,6 +299,23 @@ section p { color: #d1d5db; line-height: 1.5; font-size: 0.9rem; }
 }
 
 /* ======================================================= */
+/* МЕДИА-ЗАПРОС ДЛЯ ПК (Горизонтальные экраны)            */
+/* ======================================================= */
+@media (min-width: 750px) {
+    .main-container {
+        /* Аккуратная высота. Хитори приоткроется, но не раздует постер */
+        min-height: 440px; 
+    }
+    .sidebar { 
+        max-width: 250px; 
+    }
+    .sidebar-content { 
+        flex-direction: column; 
+        padding: 35px 20px; 
+    }
+}
+
+/* ======================================================= */
 /* МЕДИА-ЗАПРОС ДЛЯ СМАРТФОНОВ                             */
 /* ======================================================= */
 @media screen and (max-width: 749px) {
@@ -322,8 +341,7 @@ section p { color: #d1d5db; line-height: 1.5; font-size: 0.9rem; }
         padding: 30px 20px;
         gap: 15px; 
         
-        /* МАГИЯ СВЕТА: Убираем черное затемнение rgba(0,0,0,0.45) */
-        /* Вместо него оставляем только размытие, чтобы сквозь карточку сочно светил розово-синий фон */
+        /* МАГИЯ СВЕТА: Убираем черное затемнение */
         background: transparent !important; 
     }
 
