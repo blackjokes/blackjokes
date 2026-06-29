@@ -22,7 +22,7 @@ body {
     color: var(--text-main);
     min-height: 100vh;
     overflow-x: hidden;
-    overflow-y: auto; /* Включаем вертикальный скролл страницы */
+    overflow-y: auto;
     position: relative;
 }
 
@@ -33,10 +33,10 @@ body {
     align-items: center;
     width: 100%;
     padding: 60px 20px;
-    gap: 50px; /* Зазор между профилем и проектами */
+    gap: 50px;
 }
 
-/* Розовое и синее неоновое свечение на фоне */
+/* Задний фон со свечением */
 body::before, body::after {
     content: '';
     position: absolute;
@@ -63,7 +63,7 @@ body::after {
     animation: float 10s ease-in-out infinite alternate-reverse;
 }
 
-/* --- ВЕРХНИЙ КОНТЕЙНЕР (Профиль) --- */
+/* --- ВЕРХНИЙ БЛОК (Профиль) --- */
 .main-container {
     display: flex;
     justify-content: center;
@@ -102,16 +102,13 @@ body::after {
     box-shadow: 0 0 15px rgba(255, 105, 180, 0.4);
     transition: transform 0.3s ease;
 }
-.avatar-container:hover {
-    transform: scale(1.08);
-}
+.avatar-container:hover { transform: scale(1.08); }
 .avatar-img { width: 100%; height: 100%; object-fit: cover; }
 
 .social-links { display: flex; gap: 18px; }
 .social-icon { font-size: 1.4rem; color: var(--text-muted); text-decoration: none; transition: color 0.3s ease, transform 0.2s ease; }
 .social-icon:hover { color: #fff; transform: translateY(-2px); }
 
-/* Главная карточка */
 .profile-card {
     background: var(--glass-bg);
     backdrop-filter: blur(16px);
@@ -122,11 +119,6 @@ body::after {
     flex: 1;
     max-width: 550px;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.profile-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 40px 0 rgba(255, 105, 180, 0.12);
 }
 
 header h1 {
@@ -142,7 +134,7 @@ section { margin-bottom: 20px; }
 section h2 { font-size: 1.1rem; margin-bottom: 10px; color: var(--bocchi-pink); border-bottom: 1px solid var(--glass-border); padding-bottom: 4px; display: inline-block; }
 section p { color: #d1d5db; line-height: 1.5; font-size: 0.9rem; }
 
-/* Стек технологий (Всплывашки кнопок Python и др.) */
+/* Стек */
 .tech-stack ul { list-style: none; display: flex; gap: 10px; flex-wrap: wrap; }
 .tech-stack li { display: flex; align-items: center; background: rgba(255, 255, 255, 0.06); border: 1px solid var(--glass-border); padding: 6px 14px; border-radius: 14px; font-size: 0.85rem; transition: all 0.2s ease; }
 .tech-stack li:hover {
@@ -153,7 +145,7 @@ section p { color: #d1d5db; line-height: 1.5; font-size: 0.9rem; }
 }
 .tech-icon { margin-right: 6px; }
 
-/* --- НИЖНИЙ БЛОК: СЕТКА ПРОЕКТОВ (ГОРИЗОНТАЛЬНАЯ) --- */
+/* --- НИЖНИЙ БЛОК: СЕТКА ПРОЕКТОВ --- */
 .projects-section {
     width: 100%;
     max-width: 850px; 
@@ -162,14 +154,15 @@ section p { color: #d1d5db; line-height: 1.5; font-size: 0.9rem; }
 .section-title {
     font-size: 1.3rem;
     color: #fff;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
+/* Строгий трехколоночный ряд */
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 колонки строго в один горизонтальный ряд */
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     width: 100%;
 }
@@ -184,7 +177,110 @@ section p { color: #d1d5db; line-height: 1.5; font-size: 0.9rem; }
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 320px; 
+    height: 380px; /* Фиксированная высота, чтобы ничего не прыгало */
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
     
-    /*
+    margin-top: 0;
+    margin-bottom: 8px;
+    transition: margin 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.tile-header { 
+    display: flex; 
+    align-items: center; 
+    gap: 15px; 
+    margin-bottom: 15px;
+    height: 50px; /* Фиксируем высоту шапки */
+}
+
+/* ЖЕСТКО ограничиваем размер логотипов, чтобы они больше не взрывали верстку */
+.project-logo-wrapper {
+    width: 48px !important;
+    height: 48px !important;
+    min-width: 48px !important;
+    min-height: 48px !important;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--glass-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.project-logo { 
+    width: 100% !important; 
+    height: 100% !important; 
+    object-fit: cover !important; 
+}
+
+.tile-title h3 { font-size: 1.1rem; color: #fff; line-height: 1.2; }
+.tile-title p { font-size: 0.75rem; color: var(--text-muted); }
+
+.tile-desc {
+    font-size: 0.8rem;
+    color: #d1d5db;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 6; /* Безопасно обрезает текст, если он слишком длинный */
+    -webkit-box-orient: vertical;
+}
+
+.tile-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 15px;
+    height: 40px;
+}
+
+.project-socials { display: flex; gap: 14px; }
+.project-socials a { color: var(--text-muted); font-size: 1.2rem; text-decoration: none; transition: color 0.2s ease, transform 0.2s ease; }
+.project-socials a:hover { color: #fff; transform: translateY(-2px); }
+
+.tile-btn {
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: gap 0.2s ease, color 0.2s ease;
+}
+.tile-btn i { font-size: 0.75rem; transition: transform 0.2s ease; }
+
+/* Ховеры с фиксом анимации */
+.tile-travevill:hover { 
+    margin-top: -8px; 
+    margin-bottom: 16px;
+    border-color: var(--bocchi-pink); 
+    box-shadow: 0 15px 30px rgba(255, 105, 180, 0.25); 
+}
+.tile-travevill:hover .tile-btn { color: var(--bocchi-pink); }
+.tile-travevill:hover .tile-btn i { transform: translateX(3px); }
+
+.tile-polityevo:hover { 
+    margin-top: -8px; 
+    margin-bottom: 16px;
+    border-color: var(--ryo-blue); 
+    box-shadow: 0 15px 30px rgba(0, 191, 255, 0.25); 
+}
+.tile-polityevo:hover .tile-btn { color: var(--ryo-blue); }
+.tile-polityevo:hover .tile-btn i { transform: translateX(3px); }
+
+.tile-discord-server:hover { 
+    margin-top: -8px; 
+    margin-bottom: 16px;
+    border-color: #5865F2; 
+    box-shadow: 0 15px 30px rgba(88, 101, 242, 0.3); 
+}
+.tile-discord-server:hover .tile-btn { color: #5865F2; }
+.tile-discord-server:hover .tile-btn i { transform: translateX(3px); }
+
+@keyframes float {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(20px, 15px) scale(1.05); }
+}
