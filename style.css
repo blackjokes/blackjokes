@@ -201,7 +201,7 @@ section p { color: #d1d5db; line-height: 1.5; font-size: 0.9rem; }
     
     flex: 1 1 250px;
     width: 100%;
-    max-width: 100%;
+    max-width: 270px; /* Фиксируем ширину на ПК, чтобы одиночные карточки не «жирнели» */
     height: 420px;
     
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
@@ -293,7 +293,6 @@ section p { color: #d1d5db; line-height: 1.5; font-size: 0.9rem; }
 .tile-discord-server:hover .tile-btn { color: #5865F2; }
 .tile-discord-server:hover .tile-btn i { transform: translateX(3px); }
 
-/* Изумрудно-зеленый ховер для BlitzStats */
 .tile-blitzstats:hover { margin-top: -8px; margin-bottom: 16px; border-color: #2ecc71; box-shadow: 0 15px 30px rgba(46, 204, 113, 0.25); }
 .tile-blitzstats:hover .tile-btn { color: #2ecc71; }
 .tile-blitzstats:hover .tile-btn i { transform: translateX(3px); }
@@ -351,7 +350,7 @@ section p { color: #d1d5db; line-height: 1.5; font-size: 0.9rem; }
 
     .project-tile {
         flex: 1 1 100%;
-        max-width: 550px; 
+        max-width: 550px; /* На мобилках разрешаем растягиваться под ширину контейнера био */
         height: auto; 
         min-height: 260px;
     }
