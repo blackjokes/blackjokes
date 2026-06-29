@@ -128,7 +128,7 @@ body::after {
     border: 1px solid var(--glass-border);
     border-radius: 24px;
     padding: clamp(20px, 4vw, 35px);
-    flex: 1 1 300px; /* Уменьшили базовый размер с 400px до 300px, чтобы не расталкивать мобильный экран */
+    flex: 1 1 300px;
     width: 100%;
     max-width: 550px;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
@@ -280,7 +280,7 @@ section p { color: #d1d5db; line-height: 1.5; font-size: 0.9rem; }
 }
 .tile-btn i { font-size: 0.75rem; transition: transform 0.2s ease; }
 
-/* Ховеры */
+/* --- ХОВЕРЫ ДЛЯ КАРТОЧЕК --- */
 .tile-travevill:hover { margin-top: -8px; margin-bottom: 16px; border-color: var(--bocchi-pink); box-shadow: 0 15px 30px rgba(255, 105, 180, 0.25); }
 .tile-travevill:hover .tile-btn { color: var(--bocchi-pink); }
 .tile-travevill:hover .tile-btn i { transform: translateX(3px); }
@@ -293,6 +293,11 @@ section p { color: #d1d5db; line-height: 1.5; font-size: 0.9rem; }
 .tile-discord-server:hover .tile-btn { color: #5865F2; }
 .tile-discord-server:hover .tile-btn i { transform: translateX(3px); }
 
+/* Изумрудно-зеленый ховер для BlitzStats */
+.tile-blitzstats:hover { margin-top: -8px; margin-bottom: 16px; border-color: #2ecc71; box-shadow: 0 15px 30px rgba(46, 204, 113, 0.25); }
+.tile-blitzstats:hover .tile-btn { color: #2ecc71; }
+.tile-blitzstats:hover .tile-btn i { transform: translateX(3px); }
+
 @keyframes float {
     0% { transform: translate(0, 0) scale(1); }
     100% { transform: translate(20px, 15px) scale(1.05); }
@@ -303,7 +308,6 @@ section p { color: #d1d5db; line-height: 1.5; font-size: 0.9rem; }
 /* ======================================================= */
 @media (min-width: 750px) {
     .main-container {
-        /* Аккуратная высота. Хитори приоткроется, но не раздует постер */
         min-height: 440px; 
     }
     .sidebar { 
@@ -319,19 +323,17 @@ section p { color: #d1d5db; line-height: 1.5; font-size: 0.9rem; }
 /* МЕДИА-ЗАПРОС ДЛЯ СМАРТФОНОВ                             */
 /* ======================================================= */
 @media screen and (max-width: 749px) {
-    /* Ровное выравнивание контейнера по центру */
     .main-container {
         flex-direction: column;
         align-items: center;
     }
 
-    /* Компактный и чистый стиль для карточки Хитори */
     .sidebar {
         width: 100%;
         max-width: 550px; 
         height: auto; 
-        background-image: none !important; /* Убираем арт на телефонах */
-        background: rgba(255, 255, 255, 0.03); /* Делаем стекло чуть светлее */
+        background-image: none !important; 
+        background: rgba(255, 255, 255, 0.03); 
     }
 
     .sidebar-content {
@@ -340,17 +342,13 @@ section p { color: #d1d5db; line-height: 1.5; font-size: 0.9rem; }
         align-items: center;
         padding: 30px 20px;
         gap: 15px; 
-        
-        /* МАГИЯ СВЕТА: Убираем черное затемнение */
         background: transparent !important; 
     }
 
-    /* Центрируем заголовок секции проектов */
     .section-title {
         text-align: center;
     }
 
-    /* Карточки проектов встают ровно под размер карточки профиля */
     .project-tile {
         flex: 1 1 100%;
         max-width: 550px; 
