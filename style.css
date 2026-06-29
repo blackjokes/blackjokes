@@ -105,10 +105,18 @@ body::after {
     gap: 20px;
 }
 
-/* На больших экранах возвращаем сайдбару ограничение ширины */
+/* На горизонтальных экранах (ПК) задаем сочную высоту всей секции */
 @media (min-width: 750px) {
-    .sidebar { max-width: 250px; }
-    .sidebar-content { flex-direction: column; padding: 40px 20px; }
+    .main-container {
+        min-height: 650px; /* Задаем базовую высоту: теперь обе карточки вытянутся вниз */
+    }
+    .sidebar { 
+        max-width: 280px; /* Немного расширим, чтобы пропорции Хитори стали как на референсе */
+    }
+    .sidebar-content { 
+        flex-direction: column; 
+        padding: 40px 20px; 
+    }
 }
 
 .avatar-container {
@@ -134,10 +142,14 @@ body::after {
     border: 1px solid var(--glass-border);
     border-radius: 24px;
     padding: clamp(20px, 4vw, 35px);
-    flex: 1 1 300px; /* Уменьшили базовый размер с 400px до 300px, чтобы не расталкивать мобильный экран */
-    width: 100%;
+    flex: 1 1 400px; 
     max-width: 550px;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+
+    /* Добавляем флекс, чтобы внутри всё ложилось как надо при большой высоте */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; 
 }
 
 header h1 {
