@@ -1,6 +1,10 @@
 ## > Привет, я blackjokes! 👋
 ✦ Per aspera ad astra!
 
+**Обо мне**
+> А что обо мне? Я — дилетант широкого профиля: разбираюсь во всём, но по-немногу. Программирование, дизайн, SMM, писательство, картография.
+Всё могу, во всём не спец.
+
 <!--
 **blackjokes/blackjokes** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
