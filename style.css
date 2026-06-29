@@ -185,7 +185,7 @@ section p { color: #d1d5db; line-height: 1.5; font-size: 0.9rem; }
     flex-wrap: wrap;
     gap: 20px;
     width: 100%;
-    justify-content: center;
+    justify-content: flex-start; /* Изменено с center на flex-start для ровной сетки */
 }
 
 .project-tile {
@@ -201,7 +201,7 @@ section p { color: #d1d5db; line-height: 1.5; font-size: 0.9rem; }
     
     flex: 1 1 250px;
     width: 100%;
-    max-width: 270px; /* Фиксируем ширину на ПК, чтобы одиночные карточки не «жирнели» */
+    max-width: 270px; /* Ограничиваем максимальную ширину на ПК */
     height: 420px;
     
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
@@ -348,9 +348,13 @@ section p { color: #d1d5db; line-height: 1.5; font-size: 0.9rem; }
         text-align: center;
     }
 
+    .projects-grid {
+        justify-content: center; /* На мобилках центрируем карточки в один вертикальный ряд */
+    }
+
     .project-tile {
         flex: 1 1 100%;
-        max-width: 550px; /* На мобилках разрешаем растягиваться под ширину контейнера био */
+        max-width: 550px; 
         height: auto; 
         min-height: 260px;
     }
