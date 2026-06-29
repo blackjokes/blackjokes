@@ -177,7 +177,7 @@ section p { color: #d1d5db; line-height: 1.5; font-size: 0.9rem; }
     flex-direction: column;
     justify-content: space-between;
     
-    /* ИСПРАВЛЕНИЕ: строго фиксированная одинаковая высота для всех */
+    /* ИСПРАВЛЕНИЕ: строго фиксированная одинаковая высота для ПК */
     height: 420px; 
     
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
@@ -217,32 +217,22 @@ section p { color: #d1d5db; line-height: 1.5; font-size: 0.9rem; }
 .tile-title h3 { font-size: 1.1rem; color: #fff; line-height: 1.2; }
 .tile-title p { font-size: 0.75rem; color: var(--text-muted); }
 
-/* ИСПРАВЛЕНИЕ: область описания теперь умный скролл-контейнер */
+/* Область описания со скроллбаром */
 .tile-desc {
     font-size: 0.8rem;
     color: #d1d5db;
     line-height: 1.5;
     margin-bottom: 15px;
     flex-grow: 1;
-    
-    overflow-y: auto; /* Включает вертикальную прокрутку, если текст не влезает */
-    padding-right: 5px; /* Зазор, чтобы текст не прилипал к скроллбару */
+    overflow-y: auto; 
+    padding-right: 5px; 
 }
 
-/* Красивый кастомный тонкий скроллбар для длинного текста (например, TraveVill) */
-.tile-desc::-webkit-scrollbar {
-    width: 4px;
-}
-.tile-desc::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.01);
-}
-.tile-desc::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 10px;
-}
-.tile-desc::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.3);
-}
+/* Красивый тонкий скроллбарик */
+.tile-desc::-webkit-scrollbar { width: 4px; }
+.tile-desc::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.01); }
+.tile-desc::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.15); border-radius: 10px; }
+.tile-desc::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.3); }
 
 .tile-footer {
     display: flex;
@@ -269,34 +259,73 @@ section p { color: #d1d5db; line-height: 1.5; font-size: 0.9rem; }
 .tile-btn i { font-size: 0.75rem; transition: transform 0.2s ease; }
 
 /* Ховеры */
-.tile-travevill:hover { 
-    margin-top: -8px; 
-    margin-bottom: 16px;
-    border-color: var(--bocchi-pink); 
-    box-shadow: 0 15px 30px rgba(255, 105, 180, 0.25); 
-}
+.tile-travevill:hover { margin-top: -8px; margin-bottom: 16px; border-color: var(--bocchi-pink); box-shadow: 0 15px 30px rgba(255, 105, 180, 0.25); }
 .tile-travevill:hover .tile-btn { color: var(--bocchi-pink); }
 .tile-travevill:hover .tile-btn i { transform: translateX(3px); }
 
-.tile-polityevo:hover { 
-    margin-top: -8px; 
-    margin-bottom: 16px;
-    border-color: var(--ryo-blue); 
-    box-shadow: 0 15px 30px rgba(0, 191, 255, 0.25); 
-}
+.tile-polityevo:hover { margin-top: -8px; margin-bottom: 16px; border-color: var(--ryo-blue); box-shadow: 0 15px 30px rgba(0, 191, 255, 0.25); }
 .tile-polityevo:hover .tile-btn { color: var(--ryo-blue); }
 .tile-polityevo:hover .tile-btn i { transform: translateX(3px); }
 
-.tile-discord-server:hover { 
-    margin-top: -8px; 
-    margin-bottom: 16px;
-    border-color: #5865F2; 
-    box-shadow: 0 15px 30px rgba(88, 101, 242, 0.3); 
-}
+.tile-discord-server:hover { margin-top: -8px; margin-bottom: 16px; border-color: #5865F2; box-shadow: 0 15px 30px rgba(88, 101, 242, 0.3); }
 .tile-discord-server:hover .tile-btn { color: #5865F2; }
 .tile-discord-server:hover .tile-btn i { transform: translateX(3px); }
 
 @keyframes float {
     0% { transform: translate(0, 0) scale(1); }
     100% { transform: translate(20px, 15px) scale(1.05); }
+}
+
+/* ======================================= */
+/* АДАПТИВНОСТЬ ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ    */
+/* ======================================= */
+
+/* Для планшетов (до 900px) */
+@media (max-width: 900px) {
+    .main-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .sidebar {
+        width: 100%;
+        max-width: 550px;
+        height: auto;
+    }
+    .sidebar-content {
+        flex-direction: row;
+        padding: 20px;
+        gap: 20px;
+    }
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr); /* По 2 карточки в ряд */
+    }
+}
+
+/* Для телефонов (до 600px) */
+@media (max-width: 600px) {
+    .page-wrapper {
+        padding: 30px 14px;
+        gap: 35px;
+    }
+    .sidebar-content {
+        flex-direction: column;
+        padding: 30px 20px;
+        gap: 20px;
+    }
+    .profile-card {
+        padding: 25px 20px;
+    }
+    header h1 {
+        font-size: 1.5rem;
+    }
+    .projects-grid {
+        grid-template-columns: 1fr; /* По 1 карточке в ряд, на весь экран */
+    }
+    .project-tile {
+        height: auto; /* На телефонах убираем жесткие 420px, чтобы не было лишних скроллов */
+        min-height: 280px;
+    }
+    .tile-desc {
+        overflow-y: visible; /* Весь текст на телефонах будет виден сразу */
+    }
 }
