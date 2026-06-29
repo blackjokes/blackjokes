@@ -159,7 +159,6 @@ section p { color: #d1d5db; line-height: 1.5; font-size: 0.9rem; }
     letter-spacing: 1px;
 }
 
-/* Строгий трехколоночный ряд */
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -177,9 +176,11 @@ section p { color: #d1d5db; line-height: 1.5; font-size: 0.9rem; }
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 380px; /* Фиксированная высота, чтобы ничего не прыгало */
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
     
+    /* ИСПРАВЛЕНИЕ: строго фиксированная одинаковая высота для всех */
+    height: 420px; 
+    
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
     margin-top: 0;
     margin-bottom: 8px;
     transition: margin 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
@@ -190,10 +191,9 @@ section p { color: #d1d5db; line-height: 1.5; font-size: 0.9rem; }
     align-items: center; 
     gap: 15px; 
     margin-bottom: 15px;
-    height: 50px; /* Фиксируем высоту шапки */
+    flex-shrink: 0;
 }
 
-/* ЖЕСТКО ограничиваем размер логотипов, чтобы они больше не взрывали верстку */
 .project-logo-wrapper {
     width: 48px !important;
     height: 48px !important;
@@ -217,14 +217,31 @@ section p { color: #d1d5db; line-height: 1.5; font-size: 0.9rem; }
 .tile-title h3 { font-size: 1.1rem; color: #fff; line-height: 1.2; }
 .tile-title p { font-size: 0.75rem; color: var(--text-muted); }
 
+/* ИСПРАВЛЕНИЕ: область описания теперь умный скролл-контейнер */
 .tile-desc {
     font-size: 0.8rem;
     color: #d1d5db;
     line-height: 1.5;
     margin-bottom: 15px;
-    /* Убираем жесткое ограничение строк, оставляя обычный вывод текста */
-    display: block; 
-    overflow: visible;
+    flex-grow: 1;
+    
+    overflow-y: auto; /* Включает вертикальную прокрутку, если текст не влезает */
+    padding-right: 5px; /* Зазор, чтобы текст не прилипал к скроллбару */
+}
+
+/* Красивый кастомный тонкий скроллбар для длинного текста (например, TraveVill) */
+.tile-desc::-webkit-scrollbar {
+    width: 4px;
+}
+.tile-desc::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.01);
+}
+.tile-desc::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+}
+.tile-desc::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
 }
 
 .tile-footer {
@@ -233,7 +250,7 @@ section p { color: #d1d5db; line-height: 1.5; font-size: 0.9rem; }
     align-items: center;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
     padding-top: 15px;
-    height: 40px;
+    flex-shrink: 0;
 }
 
 .project-socials { display: flex; gap: 14px; }
@@ -251,7 +268,7 @@ section p { color: #d1d5db; line-height: 1.5; font-size: 0.9rem; }
 }
 .tile-btn i { font-size: 0.75rem; transition: transform 0.2s ease; }
 
-/* Ховеры с фиксом анимации */
+/* Ховеры */
 .tile-travevill:hover { 
     margin-top: -8px; 
     margin-bottom: 16px;
