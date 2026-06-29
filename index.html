@@ -139,4 +139,34 @@
 
     </div>
 </body>
+
+<script>
+        document.querySelectorAll('.discord-copy-btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const textToCopy = this.getAttribute('data-clipboard');
+                
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    // Создаем плавающее уведомление
+                    const tooltip = document.createElement('div');
+                    tooltip.className = 'clipboard-tooltip';
+                    tooltip.innerText = 'Скопировано!';
+                    document.body.appendChild(tooltip);
+                    
+                    // Позиционируем его над курсором мыши
+                    tooltip.style.left = `${e.pageX}px`;
+                    tooltip.style.top = `${e.pageY - 30}px`;
+                    
+                    // Удаляем через секунду после анимации исчезновения
+                    setTimeout(() => {
+                        tooltip.classList.add('fade-out');
+                        setTimeout(() => tooltip.remove(), 300);
+                    }, 1000);
+                }).catch(err => {
+                    console.error('Не удалось скопировать: ', err);
+                });
+            });
+        });
+    </script>
+</body>
 </html>
