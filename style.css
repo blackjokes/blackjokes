@@ -1,3 +1,4 @@
+/* Импорт шрифта */
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
 
 :root {
@@ -21,7 +22,7 @@ body {
     color: var(--text-main);
     min-height: 100vh;
     overflow-x: hidden;
-    overflow-y: auto; /* Разрешаем вертикальный скролл */
+    overflow-y: auto; /* Вертикальный скролл включен */
     position: relative;
 }
 
@@ -35,12 +36,12 @@ body {
     gap: 50px; /* Зазор между профилем и проектами */
 }
 
-/* Анимированные световые пятна */
+/* Розовое и синее неоновое свечение на фоне */
 body::before, body::after {
     content: '';
     position: absolute;
     border-radius: 50%;
-    filter: blur(120px);
+    filter: blur(100px);
     z-index: -1;
 }
 body::before {
@@ -50,6 +51,7 @@ body::before {
     opacity: 0.25;
     top: 5%;
     left: 10%;
+    animation: float 8s ease-in-out infinite alternate;
 }
 body::after {
     width: 500px;
@@ -58,6 +60,7 @@ body::after {
     opacity: 0.20;
     top: 35%;
     right: 10%;
+    animation: float 10s ease-in-out infinite alternate-reverse;
 }
 
 /* --- ВЕРХНИЙ КОНТЕЙНЕР (Профиль) --- */
@@ -97,11 +100,16 @@ body::after {
     border: 3px solid var(--bocchi-pink);
     overflow: hidden;
     box-shadow: 0 0 15px rgba(255, 105, 180, 0.4);
+    transition: transform 0.3s ease;
+}
+.avatar-container:hover {
+    transform: scale(1.08);
 }
 .avatar-img { width: 100%; height: 100%; object-fit: cover; }
+
 .social-links { display: flex; gap: 18px; }
-.social-icon { font-size: 1.4rem; color: var(--text-muted); text-decoration: none; transition: color 0.3s ease; }
-.social-icon:hover { color: #fff; }
+.social-icon { font-size: 1.4rem; color: var(--text-muted); text-decoration: none; transition: color 0.3s ease, transform 0.2s ease; }
+.social-icon:hover { color: #fff; transform: translateY(-2px); }
 
 /* Главная карточка */
 .profile-card {
@@ -114,6 +122,11 @@ body::after {
     flex: 1;
     max-width: 550px;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.profile-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px 0 rgba(255, 105, 180, 0.12);
 }
 
 header h1 {
@@ -124,18 +137,26 @@ header h1 {
     -webkit-text-fill-color: transparent;
 }
 .subtitle { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px; }
+
 section { margin-bottom: 20px; }
 section h2 { font-size: 1.1rem; margin-bottom: 10px; color: var(--bocchi-pink); border-bottom: 1px solid var(--glass-border); padding-bottom: 4px; display: inline-block; }
 section p { color: #d1d5db; line-height: 1.5; font-size: 0.9rem; }
 
+/* Стек технологий */
 .tech-stack ul { list-style: none; display: flex; gap: 10px; flex-wrap: wrap; }
-.tech-stack li { display: flex; align-items: center; background: rgba(255, 255, 255, 0.06); border: 1px solid var(--glass-border); padding: 6px 14px; border-radius: 14px; font-size: 0.85rem; }
+.tech-stack li { display: flex; align-items: center; background: rgba(255, 255, 255, 0.06); border: 1px solid var(--glass-border); padding: 6px 14px; border-radius: 14px; font-size: 0.85rem; transition: all 0.2s ease; }
+.tech-stack li:hover {
+    background: rgba(255, 105, 180, 0.15);
+    border-color: var(--bocchi-pink);
+    transform: scale(1.03);
+    box-shadow: 0 4px 12px rgba(255, 105, 180, 0.2);
+}
 .tech-icon { margin-right: 6px; }
 
-/* --- НИЖНИЙ БЛОК: СЕТКА ПРОЕКТОВ --- */
+/* --- НИЖНИЙ БЛОК: СЕТКА ПРОЕКТОВ (ГОРИЗОНТАЛЬНАЯ) --- */
 .projects-section {
     width: 100%;
-    max-width: 850px; /* Идеально совпадает с шириной верхнего блока */
+    max-width: 850px; 
 }
 
 .section-title {
@@ -146,15 +167,13 @@ section p { color: #d1d5db; line-height: 1.5; font-size: 0.9rem; }
     letter-spacing: 1px;
 }
 
-/* Мощная адаптивная сетка (автоматически переносит плитки, если мало места) */
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(3, 1fr); /* 3 колонки в ряд */
     gap: 20px;
     width: 100%;
 }
 
-/* Стилизация отдельно стоящей плитки */
 .project-tile {
     background: var(--glass-bg);
     backdrop-filter: blur(16px);
@@ -165,14 +184,13 @@ section p { color: #d1d5db; line-height: 1.5; font-size: 0.9rem; }
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 220px;
+    min-height: 320px; 
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .tile-header { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
 
-/* Контейнер под будущее лого */
 .project-logo-wrapper {
     width: 48px;
     height: 48px;
@@ -194,7 +212,7 @@ section p { color: #d1d5db; line-height: 1.5; font-size: 0.9rem; }
     color: #d1d5db;
     line-height: 1.5;
     margin-bottom: 20px;
-    flex-grow: 1; /* Выталкивает футер вниз, выравнивая кнопки */
+    flex-grow: 1; 
 }
 
 .tile-footer {
@@ -212,23 +230,3 @@ section p { color: #d1d5db; line-height: 1.5; font-size: 0.9rem; }
 .tile-btn {
     color: var(--text-main);
     text-decoration: none;
-    font-size: 0.85rem;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    transition: gap 0.2s ease, color 0.2s ease;
-}
-.tile-btn i { font-size: 0.75rem; transition: transform 0.2s ease; }
-
-/* Кастомное наведение на разные плитки */
-.tile-travevill:hover { transform: translateY(-4px); border-color: var(--bocchi-pink); box-shadow: 0 10px 30px rgba(255, 105, 180, 0.15); }
-.tile-travevill:hover .tile-btn { color: var(--bocchi-pink); }
-.tile-travevill:hover .tile-btn i { transform: translateX(3px); }
-
-.tile-polityevo:hover { transform: translateY(-4px); border-color: var(--ryo-blue); box-shadow: 0 10px 30px rgba(0, 191, 255, 0.15); }
-.tile-polityevo:hover .tile-btn { color: var(--ryo-blue); }
-.tile-polityevo:hover .tile-btn i { transform: translateX(3px); }
-
-/* Подсветка для плитки Discord-сервера (Blurple цвет дса) */
-.tile-discord-server:hover { transform: translateY(-4px); border-color: #5865F2; box-shadow: 0 10px 30px rgba(88, 101, 242, 0.2); }
-.tile-discord-server:hover .tile-btn { color: #5865F2; }
