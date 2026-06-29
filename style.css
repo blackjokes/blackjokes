@@ -222,10 +222,9 @@ section p { color: #d1d5db; line-height: 1.5; font-size: 0.9rem; }
     color: #d1d5db;
     line-height: 1.5;
     margin-bottom: 15px;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 6; /* Безопасно обрезает текст, если он слишком длинный */
-    -webkit-box-orient: vertical;
+    /* Убираем жесткое ограничение строк, оставляя обычный вывод текста */
+    display: block; 
+    overflow: visible;
 }
 
 .tile-footer {
