@@ -16,12 +16,17 @@
     box-sizing: border-box;
 }
 
+html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden; /* Запрещаем горизонтальный скролл на корневом уровне */
+}
+
 body {
     font-family: 'JetBrains Mono', monospace;
     background-color: #0d0e12;
     color: var(--text-main);
     min-height: 100vh;
-    overflow-x: hidden;
     overflow-y: auto;
     position: relative;
 }
@@ -32,8 +37,10 @@ body {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    padding: clamp(20px, 5vw, 60px) clamp(10px, 3vw, 20px);
+    max-width: 100%;
+    padding: clamp(20px, 5vw, 60px) 15px; /* Оптимальные безопасные отступы по бокам */
     gap: clamp(30px, 6vw, 50px);
+    overflow-x: hidden;
 }
 
 /* Задний фон со свечением */
@@ -71,15 +78,15 @@ body::after {
     width: 100%;
     max-width: 850px;
     gap: 20px;
-    flex-wrap: wrap; /* Если экрану тесно — блоки автоматически встанут друг под друга */
+    flex-wrap: wrap;
 }
 
 .sidebar {
     width: 100%;
     min-width: 240px;
-    flex: 1 1 240px; /* На ПК займет 250px, на мобилке растянется */
+    flex: 1 1 240px;
     background-size: cover;
-    background-position: center 20%; /* Смещение для лучшего кадрирования Хитори */
+    background-position: center 15%; /* Смещаем картинку, чтобы лицо Хитори всегда было в кадре */
     border-radius: 24px;
     border: 1px solid var(--glass-border);
     overflow: hidden;
@@ -98,7 +105,7 @@ body::after {
     gap: 20px;
 }
 
-/* На горизонтальных экранах возвращаем сайдбару вертикальную ориентацию */
+/* На больших экранах возвращаем сайдбару ограничение ширины */
 @media (min-width: 750px) {
     .sidebar { max-width: 250px; }
     .sidebar-content { flex-direction: column; padding: 40px 20px; }
@@ -127,13 +134,14 @@ body::after {
     border: 1px solid var(--glass-border);
     border-radius: 24px;
     padding: clamp(20px, 4vw, 35px);
-    flex: 1 1 400px; /* Минимальная комфортная ширина контента */
+    flex: 1 1 300px; /* Уменьшили базовый размер с 400px до 300px, чтобы не расталкивать мобильный экран */
+    width: 100%;
     max-width: 550px;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
 }
 
 header h1 {
-    font-size: clamp(1.4rem, 4vw, 1.8rem); /* Умный размер шрифта под экран */
+    font-size: clamp(1.3rem, 4vw, 1.8rem);
     margin-bottom: 6px;
     background: linear-gradient(45deg, var(--bocchi-pink), var(--ryo-blue));
     -webkit-background-clip: text;
@@ -170,13 +178,12 @@ section p { color: #d1d5db; line-height: 1.5; font-size: 0.9rem; }
     letter-spacing: 1px;
 }
 
-/* Гибкая флекс-лента с центрированием */
 .projects-grid {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     width: 100%;
-    justify-content: center; /* Центрирует карточки по горизонтали на мобилках */
+    justify-content: center;
 }
 
 .project-tile {
@@ -190,10 +197,10 @@ section p { color: #d1d5db; line-height: 1.5; font-size: 0.9rem; }
     flex-direction: column;
     justify-content: space-between;
     
-    /* Магия адаптивности: */
-    flex: 1 1 250px; /* Карточка пытается быть не меньше 250px. Если тесно — прыгает вниз */
+    flex: 1 1 250px;
+    width: 100%;
     max-width: 100%;
-    height: 420px; /* Фиксированная высота для идеального ряда на ПК */
+    height: 420px;
     
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
     margin-top: 0;
@@ -232,7 +239,6 @@ section p { color: #d1d5db; line-height: 1.5; font-size: 0.9rem; }
 .tile-title h3 { font-size: 1.1rem; color: #fff; line-height: 1.2; }
 .tile-title p { font-size: 0.75rem; color: var(--text-muted); }
 
-/* Область описания со скроллбаром */
 .tile-desc {
     font-size: 0.8rem;
     color: #d1d5db;
@@ -243,7 +249,6 @@ section p { color: #d1d5db; line-height: 1.5; font-size: 0.9rem; }
     padding-right: 5px; 
 }
 
-/* Красивый тонкий скроллбарик */
 .tile-desc::-webkit-scrollbar { width: 4px; }
 .tile-desc::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.01); }
 .tile-desc::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.15); border-radius: 10px; }
@@ -292,43 +297,41 @@ section p { color: #d1d5db; line-height: 1.5; font-size: 0.9rem; }
 }
 
 /* ======================================================= */
-/* КОМПЛЕКСНЫЕ НАСТРОЙКИ ВЫРАВНИВАНИЯ И МОБИЛЬНОГО РЕЖИМА */
+/* МЕДИА-ЗАПРОС ДЛЯ СМАРТФОНОВ                             */
 /* ======================================================= */
-@media screen and (max-width: 768px) {
-    /* Тотальное центрирование всех глобальных контейнеров на странице */
+@media screen and (max-width: 749px) {
     .main-container {
         flex-direction: column;
-        align-items: center; /* Центрируем карточки профиля относительно экрана */
+        align-items: center;
     }
 
-    /* Исправление сайдбара с Хитори */
+    /* Полное исправление карточки Хитори на телефонах */
     .sidebar {
         width: 100%;
-        max-width: 550px; /* Идеально совпадает с шириной карточки Обо мне */
-        height: 340px; /* Возвращаем благородную высоту вертикального баннера */
+        max-width: 550px; 
+        height: 450px; /* Делаем баннер высоким и вертикальным, как на ПК */
+        background-position: center 25%; /* Опускаем картинку, чтобы лицо Хитори встало ровно по центру */
     }
 
     .sidebar-content {
         flex-direction: column;
-        justify-content: space-between;
-        padding: 30px 20px;
+        justify-content: space-between; /* Аватарка строго вверху, соцсети строго внизу */
+        padding: 35px 20px;
     }
 
-    /* Выравнивание заголовка секции проектов */
     .section-title {
         text-align: center;
-        margin-top: 10px;
     }
 
-    /* Исправление карточек проектов */
+    /* Карточки проектов встают ровно под размер карточки профиля */
     .project-tile {
         flex: 1 1 100%;
-        max-width: 550px; /* Ограничиваем, чтобы блоки стояли в одну ровную линию */
-        height: auto; /* На телефонах текст должен свободно дышать без скролла */
+        max-width: 550px; 
+        height: auto; 
         min-height: 260px;
     }
 
     .tile-desc {
-        overflow-y: visible; /* На смартфонах карточка просто растянется вниз, убирая скроллбары */
+        overflow-y: visible; 
     }
 }
