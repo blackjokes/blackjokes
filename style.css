@@ -1,4 +1,3 @@
-/* Импорт шрифта */
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
 
 :root {
@@ -21,52 +20,57 @@ body {
     background-color: #0d0e12;
     color: var(--text-main);
     min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto; /* Включаем вертикальный скролл */
     position: relative;
 }
 
-/* Розовое и синее неоновое свечение на фоне */
+/* Общая обертка для выстраивания блоков сверху вниз */
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 60px 20px;
+    gap: 40px; /* Отступ между верхним блоком и проектами */
+}
+
+/* Эффекты свечения на фоне */
 body::before, body::after {
     content: '';
     position: absolute;
     border-radius: 50%;
-    filter: blur(80px);
-    z-index: 1;
+    filter: blur(100px);
+    z-index: -1;
 }
 body::before {
-    width: 300px;
-    height: 300px;
+    width: 400px;
+    height: 400px;
     background: var(--bocchi-pink);
-    opacity: 0.4;
-    top: 15%;
-    left: 20%;
-    animation: float 8s ease-in-out infinite alternate;
+    opacity: 0.35;
+    top: 5%;
+    left: 15%;
 }
 body::after {
-    width: 350px;
-    height: 350px;
+    width: 450px;
+    height: 450px;
     background: var(--ryo-blue);
-    opacity: 0.3;
-    bottom: 15%;
-    right: 20%;
-    animation: float 10s ease-in-out infinite alternate-reverse;
+    opacity: 0.25;
+    top: 40%;
+    right: 15%;
 }
 
-/* Главный контейнер-сетка */
+/* Верхний контейнер (Профиль) */
 .main-container {
     display: flex;
     justify-content: center;
-    align-items: stretch; /* Растягивает плашку и карточку до одинаковой высоты */
-    width: 90%;
+    align-items: stretch;
+    width: 100%;
     max-width: 850px;
     gap: 20px;
-    z-index: 2;
 }
 
-/* Левая панель с Боччи */
 .sidebar {
     width: 250px;
     background-size: cover;
@@ -74,7 +78,7 @@ body::after {
     border-radius: 24px;
     border: 1px solid var(--glass-border);
     overflow: hidden;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
 }
 
 .sidebar-content {
@@ -84,21 +88,16 @@ body::after {
     align-items: center;
     height: 100%;
     padding: 40px 20px;
-    background: rgba(0, 0, 0, 0.45); /* Затемнение картинки */
+    background: rgba(0, 0, 0, 0.45);
 }
 
-/* Круглый аватар с неоновой рамкой */
 .avatar-container {
     width: 120px;
     height: 120px;
     border-radius: 50%;
     border: 3px solid var(--bocchi-pink);
     overflow: hidden;
-    box-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
-    transition: transform 0.3s ease;
-}
-.avatar-container:hover {
-    transform: scale(1.08);
+    box-shadow: 0 0 15px rgba(255, 105, 180, 0.4);
 }
 .avatar-img {
     width: 100%;
@@ -106,156 +105,178 @@ body::after {
     object-fit: cover;
 }
 
-/* Соцсети */
-.social-links {
-    display: flex;
-    gap: 18px;
-}
+.social-links { display: flex; gap: 18px; }
 .social-icon {
     font-size: 1.4rem;
     color: var(--text-muted);
     text-decoration: none;
-    transition: color 0.3s ease, transform 0.2s ease;
+    transition: color 0.3s ease;
 }
-.social-icon:hover {
-    color: #fff;
-    transform: translateY(-2px);
-}
+.social-icon:hover { color: #fff; }
 
-/* Правая главная карточка */
+/* Главная карточка */
 .profile-card {
     background: var(--glass-bg);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border: 1px solid var(--glass-border);
     border-radius: 24px;
-    padding: 40px;
-    flex: 1; /* Занимает всё оставшееся пространство */
+    padding: 35px;
+    flex: 1;
     max-width: 550px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.profile-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 40px 0 rgba(255, 105, 180, 0.12);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
 }
 
 header h1 {
-    font-size: 1.9rem;
+    font-size: 1.8rem;
     margin-bottom: 6px;
     background: linear-gradient(45deg, var(--bocchi-pink), var(--ryo-blue));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-.subtitle {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    margin-bottom: 20px;
-}
+.subtitle { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px; }
 
-section {
-    margin-bottom: 20px;
-}
+section { margin-bottom: 20px; }
 section h2 {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     margin-bottom: 10px;
     color: var(--bocchi-pink);
     border-bottom: 1px solid var(--glass-border);
     padding-bottom: 4px;
     display: inline-block;
 }
-section p {
-    color: #d1d5db;
-    line-height: 1.5;
-    font-size: 0.9rem;
-}
+section p { color: #d1d5db; line-height: 1.5; font-size: 0.9rem; }
 
-/* Стек технологий */
-.tech-stack ul {
-    list-style: none;
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-}
+.tech-stack ul { list-style: none; display: flex; gap: 10px; flex-wrap: wrap; }
 .tech-stack li {
-    display: flex;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid var(--glass-border);
-    padding: 6px 14px;
-    border-radius: 14px;
-    font-size: 0.85rem;
-    transition: all 0.2s ease;
+    display: flex; align-items: center; background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--glass-border); padding: 6px 14px; border-radius: 14px; font-size: 0.85rem;
 }
-.tech-stack li:hover {
-    background: rgba(255, 105, 180, 0.15);
-    border-color: var(--bocchi-pink);
-    transform: scale(1.03);
-}
-.tech-icon {
-    margin-right: 6px;
-    font-size: 1rem;
+.tech-icon { margin-right: 6px; }
+
+/* ======================================= */
+/* БЛОК ОТДЕЛЬНЫХ ПЛИТОК ПРОЕКТОВ (НИЗ)    */
+/* ======================================= */
+.projects-section {
+    width: 100%;
+    max-width: 850px; /* Чтобы ширина совпадала с верхним блоком */
 }
 
-/* Блок проектов */
+.section-title {
+    font-size: 1.3rem;
+    color: #fff;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
 .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Две плитки в один ряд */
+    gap: 20px;
+}
+
+/* Стилизация отдельной плитки проекта */
+.project-tile {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 25px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin-top: 5px;
+    justify-content: space-between;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
-.project-item {
+
+/* Шапка плитки (Лого + Название) */
+.tile-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+/* Обертка для логотипа */
+.project-logo-wrapper {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.1); /* Заглушка, если нет картинки */
+    border: 1px solid var(--glass-border);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.project-logo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.tile-title h3 { font-size: 1.2rem; color: #fff; }
+.tile-title p { font-size: 0.75rem; color: var(--text-muted); }
+
+/* Описание */
+.tile-desc {
+    font-size: 0.85rem;
+    color: #d1d5db;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    flex-grow: 1; /* Чтобы подвал всегда был прижат к низу */
+}
+
+/* Подвал плитки */
+.tile-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid var(--glass-border);
-    border-radius: 14px;
-    padding: 12px 18px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 15px;
+}
+
+/* Соцсети проекта */
+.project-socials { display: flex; gap: 12px; }
+.project-socials a {
+    color: var(--text-muted);
+    font-size: 1.2rem;
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: color 0.3s ease, transform 0.2s ease;
 }
-.project-info h3 {
-    font-size: 1rem;
-    color: var(--text-main);
-    margin-bottom: 2px;
-    transition: color 0.3s ease;
-}
-.project-info p {
-    font-size: 0.75rem;
-    color: var(--text-muted);
-}
-.arrow-icon {
-    color: var(--text-muted);
-    font-size: 0.8rem;
-    transition: all 0.3s ease;
-}
-
-/* Разная интерактивная подсветка для серверов при наведении */
-.project-item:nth-child(1):hover {
-    background: rgba(255, 105, 180, 0.08);
-    border-color: var(--bocchi-pink);
-    transform: translateX(4px);
-}
-.project-item:nth-child(1):hover h3 { color: var(--bocchi-pink); }
-
-.project-item:nth-child(2):hover {
-    background: rgba(0, 191, 255, 0.08);
-    border-color: var(--ryo-blue);
-    transform: translateX(4px);
-}
-.project-item:nth-child(2):hover h3 { color: var(--ryo-blue); }
-
-.project-item:hover .arrow-icon {
+.project-socials a:hover {
     color: #fff;
-    transform: translateX(2px);
+    transform: translateY(-2px);
 }
 
-/* Анимация левитации бэкграунда */
-@keyframes float {
-    0% { transform: translate(0, 0) scale(1); }
-    100% { transform: translate(20px, 15px) scale(1.05); }
+/* Кнопка "Подробнее" */
+.tile-btn {
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: gap 0.2s ease, color 0.2s ease;
 }
+.tile-btn i { font-size: 0.75rem; transition: transform 0.2s ease; }
+
+/* --- ЭФФЕКТЫ ПРИ НАВЕДЕНИИ НА ПЛИТКИ --- */
+/* TraveVill подсвечивается розовым */
+.tile-travevill:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 105, 180, 0.4);
+    box-shadow: 0 10px 30px rgba(255, 105, 180, 0.1);
+}
+.tile-travevill:hover .tile-btn { color: var(--bocchi-pink); }
+.tile-travevill:hover .tile-btn i { transform: translateX(3px); }
+
+/* PolityEvo подсвечивается синим */
+.tile-polityevo:hover {
+    transform: translateY(-4px);
+    border-color: rgba(0, 191, 255, 0.4);
+    box-shadow: 0 10px 30px rgba(0, 191, 255, 0.1);
+}
+.tile-polityevo:hover .tile-btn { color: var(--ryo-blue); }
+.tile-polityevo:hover .tile-btn i { transform: translateX(3px); }

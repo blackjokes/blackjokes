@@ -9,68 +9,102 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="main-container">
+    <!-- Обертка для центрирования всего контента на странице -->
+    <div class="page-wrapper">
         
-        <!-- Левая панель с Боччи и Аватаром -->
-        <aside class="sidebar" style="background-image: url('image/bocchi.jpg');">
-            <div class="sidebar-content">
-                <div class="avatar-container">
-                    <img src="image/blackjokes.jpg" alt="Мой аватар" class="avatar-img">
-                </div>
-                <div class="social-links">
-                    <a href="https://github.com/blackjokes" target="_blank" class="social-icon" title="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="https://t.me/bIackjokes" target="_blank" class="social-icon" title="Telegram"><i class="fab fa-telegram"></i></a>
-                    <a href="javascript:void(0)" class="social-icon" title="Discord"><i class="fab fa-discord"></i></a>
-                </div>
-            </div>
-        </aside>
-
-        <!-- Правая главная карточка -->
-        <main class="profile-card">
-            <header>
-                <h1>> Привет, я blackjokes</h1>
-                <p class="subtitle">✦ Per aspera ad astra!</p>
-            </header>
+        <!-- ТОП-БЛОК: Профиль и Обо мне -->
+        <div class="main-container">
             
-            <section class="about">
-                <h2>Обо мне</h2>
-                <p>Пытаюсь выбраться из своей ментальной коробки и структурировать хаос. Люблю идеальный код, красивые интерфейсы и хорошую музыку. Сейчас активно ботаю олимпиады и кодю на Python.</p>
-            </section>
-
-            <section class="tech-stack">
-                <h2>Стек</h2>
-                <ul>
-                    <li><i class="fab fa-python tech-icon"></i> Python</li>
-                    <li><i class="fab fa-html5 tech-icon"></i> HTML5 / CSS3</li>
-                    <li><i class="fab fa-git-alt tech-icon"></i> Git</li>
-                </ul>
-            </section>
-
-            <!-- Новый блок с твоими Minecraft-серверами -->
-            <section class="projects">
-                <h2>Мои проекты</h2>
-                <div class="projects-grid">
-                    <!-- Карточка TraveVill -->
-                    <a href="travevill.html" class="project-item">
-                        <div class="project-info">
-                            <h3>TraveVill</h3>
-                            <p>Minecraft сервер // Выживание и путешествия</p>
-                        </div>
-                        <i class="fas fa-chevron-right arrow-icon"></i>
-                    </a>
-
-                    <!-- Карточка PolityEvo -->
-                    <a href="polityevo.html" class="project-item">
-                        <div class="project-info">
-                            <h3>PolityEvo</h3>
-                            <p>Minecraft сервер // Политика и эволюция мира</p>
-                        </div>
-                        <i class="fas fa-chevron-right arrow-icon"></i>
-                    </a>
+            <!-- Левая панель с Боччи и Аватаром -->
+            <aside class="sidebar" style="background-image: url('image/bocchi.jpg');">
+                <div class="sidebar-content">
+                    <div class="avatar-container">
+                        <img src="image/blackjokes.jpg" alt="blackjokes" class="avatar-img">
+                    </div>
+                    <div class="social-links">
+                        <a href="https://github.com/blackjokes" target="_blank" class="social-icon" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://t.me/bIackjokes" target="_blank" class="social-icon" title="Telegram"><i class="fab fa-telegram"></i></a>
+                        <a href="javascript:void(0)" class="social-icon" title="Discord"><i class="fab fa-discord"></i></a>
+                    </div>
                 </div>
-            </section>
-        </main>
-        
+            </aside>
+
+            <!-- Правая главная карточка -->
+            <main class="profile-card">
+                <header>
+                    <h1>> Привет, я blackjokes</h1>
+                    <p class="subtitle">✦ Per aspera ad astra!</p>
+                </header>
+                
+                <section class="about">
+                    <h2>Обо мне</h2>
+                    <p>Пытаюсь выбраться из своей ментальной коробки и структурировать хаос. Люблю идеальный код, красивые интерфейсы и хорошую музыку. Сейчас активно ботаю олимпиады и кодю на Python.</p>
+                </section>
+
+                <section class="tech-stack">
+                    <h2>Стек</h2>
+                    <ul>
+                        <li><i class="fab fa-python tech-icon"></i> Python</li>
+                        <li><i class="fab fa-html5 tech-icon"></i> HTML5 / CSS3</li>
+                        <li><i class="fab fa-git-alt tech-icon"></i> Git</li>
+                    </ul>
+                </section>
+            </main>
+        </div>
+
+        <!-- НИЖНИЙ БЛОК: Отдельные плитки проектов -->
+        <div class="projects-section">
+            <h2 class="section-title">// Мои проекты</h2>
+            
+            <div class="projects-grid">
+                
+                <!-- Плитка сервера TraveVill -->
+                <div class="project-tile tile-travevill">
+                    <div class="tile-header">
+                        <!-- Логотип (замени путь на реальный лого) -->
+                        <div class="project-logo-wrapper">
+                            <img src="image/travevill-logo.jpg" alt="TV" class="project-logo" onerror="this.style.display='none'">
+                        </div>
+                        <div class="tile-title">
+                            <h3>TraveVill</h3>
+                            <p>Minecraft сервер</p>
+                        </div>
+                    </div>
+                    <p class="tile-desc">Уютный сервер, завязанный на выживании, экономике и глобальных путешествиях. Продуманный мир для комфортной игры.</p>
+                    <div class="tile-footer">
+                        <div class="project-socials">
+                            <a href="#" target="_blank" title="Telegram проекта"><i class="fab fa-telegram"></i></a>
+                            <a href="#" target="_blank" title="Discord проекта"><i class="fab fa-discord"></i></a>
+                        </div>
+                        <a href="travevill.html" class="tile-btn">Подробнее <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Плитка сервера PolityEvo -->
+                <div class="project-tile tile-polityevo">
+                    <div class="tile-header">
+                        <!-- Логотип (замени путь на реальный лого) -->
+                        <div class="project-logo-wrapper">
+                            <img src="image/polityevo-logo.jpg" alt="PE" class="project-logo" onerror="this.style.display='none'">
+                        </div>
+                        <div class="tile-title">
+                            <h3>PolityEvo</h3>
+                            <p>Minecraft сервер</p>
+                        </div>
+                    </div>
+                    <p class="tile-desc">Политический симулятор с акцентом на эволюцию общества, создание государств, дипломатию и войны.</p>
+                    <div class="tile-footer">
+                        <div class="project-socials">
+                            <a href="#" target="_blank" title="Telegram проекта"><i class="fab fa-telegram"></i></a>
+                            <a href="#" target="_blank" title="Discord проекта"><i class="fab fa-discord"></i></a>
+                        </div>
+                        <a href="polityevo.html" class="tile-btn">Подробнее <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
     </div>
 </body>
 </html>
