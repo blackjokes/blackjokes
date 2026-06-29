@@ -21,47 +21,46 @@ body {
     color: var(--text-main);
     min-height: 100vh;
     overflow-x: hidden;
-    overflow-y: auto; /* Включаем вертикальный скролл */
+    overflow-y: auto; /* Разрешаем вертикальный скролл */
     position: relative;
 }
 
-/* Общая обертка для выстраивания блоков сверху вниз */
+/* Главная вертикальная обертка */
 .page-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
     width: 100%;
     padding: 60px 20px;
-    gap: 40px; /* Отступ между верхним блоком и проектами */
+    gap: 50px; /* Зазор между профилем и проектами */
 }
 
-/* Эффекты свечения на фоне */
+/* Анимированные световые пятна */
 body::before, body::after {
     content: '';
     position: absolute;
     border-radius: 50%;
-    filter: blur(100px);
+    filter: blur(120px);
     z-index: -1;
 }
 body::before {
-    width: 400px;
-    height: 400px;
-    background: var(--bocchi-pink);
-    opacity: 0.35;
-    top: 5%;
-    left: 15%;
-}
-body::after {
     width: 450px;
     height: 450px;
-    background: var(--ryo-blue);
+    background: var(--bocchi-pink);
     opacity: 0.25;
-    top: 40%;
-    right: 15%;
+    top: 5%;
+    left: 10%;
+}
+body::after {
+    width: 500px;
+    height: 500px;
+    background: var(--ryo-blue);
+    opacity: 0.20;
+    top: 35%;
+    right: 10%;
 }
 
-/* Верхний контейнер (Профиль) */
+/* --- ВЕРХНИЙ КОНТЕЙНЕР (Профиль) --- */
 .main-container {
     display: flex;
     justify-content: center;
@@ -99,19 +98,9 @@ body::after {
     overflow: hidden;
     box-shadow: 0 0 15px rgba(255, 105, 180, 0.4);
 }
-.avatar-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
+.avatar-img { width: 100%; height: 100%; object-fit: cover; }
 .social-links { display: flex; gap: 18px; }
-.social-icon {
-    font-size: 1.4rem;
-    color: var(--text-muted);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
+.social-icon { font-size: 1.4rem; color: var(--text-muted); text-decoration: none; transition: color 0.3s ease; }
 .social-icon:hover { color: #fff; }
 
 /* Главная карточка */
@@ -135,47 +124,37 @@ header h1 {
     -webkit-text-fill-color: transparent;
 }
 .subtitle { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px; }
-
 section { margin-bottom: 20px; }
-section h2 {
-    font-size: 1.1rem;
-    margin-bottom: 10px;
-    color: var(--bocchi-pink);
-    border-bottom: 1px solid var(--glass-border);
-    padding-bottom: 4px;
-    display: inline-block;
-}
+section h2 { font-size: 1.1rem; margin-bottom: 10px; color: var(--bocchi-pink); border-bottom: 1px solid var(--glass-border); padding-bottom: 4px; display: inline-block; }
 section p { color: #d1d5db; line-height: 1.5; font-size: 0.9rem; }
 
 .tech-stack ul { list-style: none; display: flex; gap: 10px; flex-wrap: wrap; }
-.tech-stack li {
-    display: flex; align-items: center; background: rgba(255, 255, 255, 0.06);
-    border: 1px solid var(--glass-border); padding: 6px 14px; border-radius: 14px; font-size: 0.85rem;
-}
+.tech-stack li { display: flex; align-items: center; background: rgba(255, 255, 255, 0.06); border: 1px solid var(--glass-border); padding: 6px 14px; border-radius: 14px; font-size: 0.85rem; }
 .tech-icon { margin-right: 6px; }
 
-/* ======================================= */
-/* БЛОК ОТДЕЛЬНЫХ ПЛИТОК ПРОЕКТОВ (НИЗ)    */
-/* ======================================= */
+/* --- НИЖНИЙ БЛОК: СЕТКА ПРОЕКТОВ --- */
 .projects-section {
     width: 100%;
-    max-width: 850px; /* Чтобы ширина совпадала с верхним блоком */
+    max-width: 850px; /* Идеально совпадает с шириной верхнего блока */
 }
 
 .section-title {
     font-size: 1.3rem;
     color: #fff;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
     letter-spacing: 1px;
 }
 
+/* Мощная адаптивная сетка (автоматически переносит плитки, если мало места) */
 .projects-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Две плитки в один ряд */
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 20px;
+    width: 100%;
 }
 
-/* Стилизация отдельной плитки проекта */
+/* Стилизация отдельно стоящей плитки */
 .project-tile {
     background: var(--glass-bg);
     backdrop-filter: blur(16px);
@@ -186,71 +165,50 @@ section p { color: #d1d5db; line-height: 1.5; font-size: 0.9rem; }
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
+    min-height: 220px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Шапка плитки (Лого + Название) */
-.tile-header {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 15px;
-}
+.tile-header { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
 
-/* Обертка для логотипа */
+/* Контейнер под будущее лого */
 .project-logo-wrapper {
-    width: 50px;
-    height: 50px;
+    width: 48px;
+    height: 48px;
     border-radius: 12px;
-    background: rgba(255, 255, 255, 0.1); /* Заглушка, если нет картинки */
+    background: rgba(255, 255, 255, 0.08);
     border: 1px solid var(--glass-border);
-    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 }
-.project-logo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
+.project-logo { width: 100%; height: 100%; object-fit: cover; }
 
-.tile-title h3 { font-size: 1.2rem; color: #fff; }
+.tile-title h3 { font-size: 1.15rem; color: #fff; }
 .tile-title p { font-size: 0.75rem; color: var(--text-muted); }
 
-/* Описание */
 .tile-desc {
     font-size: 0.85rem;
     color: #d1d5db;
     line-height: 1.5;
     margin-bottom: 20px;
-    flex-grow: 1; /* Чтобы подвал всегда был прижат к низу */
+    flex-grow: 1; /* Выталкивает футер вниз, выравнивая кнопки */
 }
 
-/* Подвал плитки */
 .tile-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
     padding-top: 15px;
 }
 
-/* Соцсети проекта */
 .project-socials { display: flex; gap: 12px; }
-.project-socials a {
-    color: var(--text-muted);
-    font-size: 1.2rem;
-    text-decoration: none;
-    transition: color 0.3s ease, transform 0.2s ease;
-}
-.project-socials a:hover {
-    color: #fff;
-    transform: translateY(-2px);
-}
+.project-socials a { color: var(--text-muted); font-size: 1.15rem; text-decoration: none; transition: color 0.2s ease, transform 0.2s ease; }
+.project-socials a:hover { color: #fff; transform: translateY(-2px); }
 
-/* Кнопка "Подробнее" */
 .tile-btn {
     color: var(--text-main);
     text-decoration: none;
@@ -262,21 +220,15 @@ section p { color: #d1d5db; line-height: 1.5; font-size: 0.9rem; }
 }
 .tile-btn i { font-size: 0.75rem; transition: transform 0.2s ease; }
 
-/* --- ЭФФЕКТЫ ПРИ НАВЕДЕНИИ НА ПЛИТКИ --- */
-/* TraveVill подсвечивается розовым */
-.tile-travevill:hover {
-    transform: translateY(-4px);
-    border-color: rgba(255, 105, 180, 0.4);
-    box-shadow: 0 10px 30px rgba(255, 105, 180, 0.1);
-}
+/* Кастомное наведение на разные плитки */
+.tile-travevill:hover { transform: translateY(-4px); border-color: var(--bocchi-pink); box-shadow: 0 10px 30px rgba(255, 105, 180, 0.15); }
 .tile-travevill:hover .tile-btn { color: var(--bocchi-pink); }
 .tile-travevill:hover .tile-btn i { transform: translateX(3px); }
 
-/* PolityEvo подсвечивается синим */
-.tile-polityevo:hover {
-    transform: translateY(-4px);
-    border-color: rgba(0, 191, 255, 0.4);
-    box-shadow: 0 10px 30px rgba(0, 191, 255, 0.1);
-}
+.tile-polityevo:hover { transform: translateY(-4px); border-color: var(--ryo-blue); box-shadow: 0 10px 30px rgba(0, 191, 255, 0.15); }
 .tile-polityevo:hover .tile-btn { color: var(--ryo-blue); }
 .tile-polityevo:hover .tile-btn i { transform: translateX(3px); }
+
+/* Подсветка для плитки Discord-сервера (Blurple цвет дса) */
+.tile-discord-server:hover { transform: translateY(-4px); border-color: #5865F2; box-shadow: 0 10px 30px rgba(88, 101, 242, 0.2); }
+.tile-discord-server:hover .tile-btn { color: #5865F2; }

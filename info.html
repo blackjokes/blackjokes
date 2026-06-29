@@ -4,18 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Обо мне</title>
-    <!-- Подключаем иконки Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Обертка для центрирования всего контента на странице -->
     <div class="page-wrapper">
         
-        <!-- ТОП-БЛОК: Профиль и Обо мне -->
         <div class="main-container">
             
-            <!-- Левая панель с Боччи и Аватаром -->
             <aside class="sidebar" style="background-image: url('image/bocchi.jpg');">
                 <div class="sidebar-content">
                     <div class="avatar-container">
@@ -29,7 +25,6 @@
                 </div>
             </aside>
 
-            <!-- Правая главная карточка -->
             <main class="profile-card">
                 <header>
                     <h1>> Привет, я blackjokes</h1>
@@ -52,25 +47,22 @@
             </main>
         </div>
 
-        <!-- НИЖНИЙ БЛОК: Отдельные плитки проектов -->
         <div class="projects-section">
             <h2 class="section-title">// Мои проекты</h2>
             
             <div class="projects-grid">
                 
-                <!-- Плитка сервера TraveVill -->
                 <div class="project-tile tile-travevill">
                     <div class="tile-header">
-                        <!-- Логотип (замени путь на реальный лого) -->
                         <div class="project-logo-wrapper">
-                            <img src="image/travevill-logo.jpg" alt="TV" class="project-logo" onerror="this.style.display='none'">
+                            <img src="image/travevill-logo.jpg" alt="" class="project-logo" onerror="this.style.parentNode.style.display='none'">
                         </div>
                         <div class="tile-title">
                             <h3>TraveVill</h3>
                             <p>Minecraft сервер</p>
                         </div>
                     </div>
-                    <p class="tile-desc">Уютный сервер, завязанный на выживании, экономике и глобальных путешествиях. Продуманный мир для комфортной игры.</p>
+                    <p class="tile-desc">Уютный сервер, завязанный на выживании, продуманной экономике и глобальных путешествиях. Твой личный мир комфорта.</p>
                     <div class="tile-footer">
                         <div class="project-socials">
                             <a href="#" target="_blank" title="Telegram проекта"><i class="fab fa-telegram"></i></a>
@@ -80,25 +72,42 @@
                     </div>
                 </div>
 
-                <!-- Плитка сервера PolityEvo -->
                 <div class="project-tile tile-polityevo">
                     <div class="tile-header">
-                        <!-- Логотип (замени путь на реальный лого) -->
                         <div class="project-logo-wrapper">
-                            <img src="image/polityevo-logo.jpg" alt="PE" class="project-logo" onerror="this.style.display='none'">
+                            <img src="image/polityevo-logo.jpg" alt="" class="project-logo" onerror="this.style.parentNode.style.display='none'">
                         </div>
                         <div class="tile-title">
                             <h3>PolityEvo</h3>
                             <p>Minecraft сервер</p>
                         </div>
                     </div>
-                    <p class="tile-desc">Политический симулятор с акцентом на эволюцию общества, создание государств, дипломатию и войны.</p>
+                    <p class="tile-desc">Политический симулятор: эволюция общества, создание собственных государств, дипломатия, интриги и войны.</p>
                     <div class="tile-footer">
                         <div class="project-socials">
                             <a href="#" target="_blank" title="Telegram проекта"><i class="fab fa-telegram"></i></a>
                             <a href="#" target="_blank" title="Discord проекта"><i class="fab fa-discord"></i></a>
                         </div>
                         <a href="polityevo.html" class="tile-btn">Подробнее <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="project-tile tile-discord-server">
+                    <div class="tile-header">
+                        <div class="project-logo-wrapper" style="background: #5865F2;">
+                            <i class="fab fa-discord" style="color: white; font-size: 1.5rem;"></i>
+                        </div>
+                        <div class="tile-title">
+                            <h3>Black/White</h3>
+                            <p>Discord сообщество</p>
+                        </div>
+                    </div>
+                    <p class="tile-desc">Ламповый сервер для общения, поиска тиммейтов, обсуждения кода, музыки и просто хорошего времяпрепровождения.</p>
+                    <div class="tile-footer">
+                        <div class="project-socials">
+                            <a href="#" target="_blank" title="Инвайт на сервер"><i class="fas fa-link"></i></a>
+                        </div>
+                        <a href="#" class="tile-btn">Войти <i class="fas fa-sign-in-alt"></i></a>
                     </div>
                 </div>
 
