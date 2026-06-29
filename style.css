@@ -32,8 +32,8 @@ body {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    padding: 60px 20px;
-    gap: 50px;
+    padding: clamp(20px, 5vw, 60px) clamp(10px, 3vw, 20px);
+    gap: clamp(30px, 6vw, 50px);
 }
 
 /* Задний фон со свечением */
@@ -71,10 +71,13 @@ body::after {
     width: 100%;
     max-width: 850px;
     gap: 20px;
+    flex-wrap: wrap; /* Если экрану тесно — блоки автоматически встанут друг под друга */
 }
 
 .sidebar {
-    width: 250px;
+    width: 100%;
+    min-width: 240px;
+    flex: 1 1 240px; /* На ПК займет 250px, на мобилке растянется */
     background-size: cover;
     background-position: center;
     border-radius: 24px;
@@ -89,8 +92,16 @@ body::after {
     justify-content: space-between;
     align-items: center;
     height: 100%;
-    padding: 40px 20px;
+    min-height: 200px;
+    padding: 30px 20px;
     background: rgba(0, 0, 0, 0.45);
+    gap: 20px;
+}
+
+/* На горизонтальных экранах возвращаем сайдбару вертикальную ориентацию */
+@media (min-width: 750px) {
+    .sidebar { max-width: 250px; }
+    .sidebar-content { flex-direction: column; padding: 40px 20px; }
 }
 
 .avatar-container {
@@ -115,14 +126,14 @@ body::after {
     -webkit-backdrop-filter: blur(16px);
     border: 1px solid var(--glass-border);
     border-radius: 24px;
-    padding: 35px;
-    flex: 1;
+    padding: clamp(20px, 4vw, 35px);
+    flex: 1 1 400px; /* Минимальная комфортная ширина контента */
     max-width: 550px;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
 }
 
 header h1 {
-    font-size: 1.8rem;
+    font-size: clamp(1.4rem, 4vw, 1.8rem); /* Умный размер шрифта под экран */
     margin-bottom: 6px;
     background: linear-gradient(45deg, var(--bocchi-pink), var(--ryo-blue));
     -webkit-background-clip: text;
@@ -159,9 +170,10 @@ section p { color: #d1d5db; line-height: 1.5; font-size: 0.9rem; }
     letter-spacing: 1px;
 }
 
+/* ИСПРАВЛЕНИЕ: Уходим от жесткого Грида, включаем резиновую Флекс-ленту */
 .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-wrap: wrap;
     gap: 20px;
     width: 100%;
 }
@@ -177,8 +189,9 @@ section p { color: #d1d5db; line-height: 1.5; font-size: 0.9rem; }
     flex-direction: column;
     justify-content: space-between;
     
-    /* ИСПРАВЛЕНИЕ: строго фиксированная одинаковая высота для ПК */
-    height: 420px; 
+    /* Магия адаптивности без медиа-запросов: */
+    flex: 1 1 250px; /* Карточка пытается быть 250px шириной. Если места мало — падает на новую строку и расширяется на весь экран телефона! */
+    height: 420px; /* Стандартная высота для ПК */
     
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
     margin-top: 0;
@@ -276,56 +289,13 @@ section p { color: #d1d5db; line-height: 1.5; font-size: 0.9rem; }
     100% { transform: translate(20px, 15px) scale(1.05); }
 }
 
-/* ======================================= */
-/* АДАПТИВНОСТЬ ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ    */
-/* ======================================= */
-
-/* Для планшетов (до 900px) */
-@media (max-width: 900px) {
-    .main-container {
-        flex-direction: column;
-        align-items: center;
-    }
-    .sidebar {
-        width: 100%;
-        max-width: 550px;
-        height: auto;
-    }
-    .sidebar-content {
-        flex-direction: row;
-        padding: 20px;
-        gap: 20px;
-    }
-    .projects-grid {
-        grid-template-columns: repeat(2, 1fr); /* По 2 карточки в ряд */
-    }
-}
-
-/* Для телефонов (до 600px) */
-@media (max-width: 600px) {
-    .page-wrapper {
-        padding: 30px 14px;
-        gap: 35px;
-    }
-    .sidebar-content {
-        flex-direction: column;
-        padding: 30px 20px;
-        gap: 20px;
-    }
-    .profile-card {
-        padding: 25px 20px;
-    }
-    header h1 {
-        font-size: 1.5rem;
-    }
-    .projects-grid {
-        grid-template-columns: 1fr; /* По 1 карточке в ряд, на весь экран */
-    }
+/* Хак для экранов смартфонов: если высота плитки слишком зажата, адаптируем внутренности */
+@media (max-width: 500px) {
     .project-tile {
-        height: auto; /* На телефонах убираем жесткие 420px, чтобы не было лишних скроллов */
+        height: auto;
         min-height: 280px;
     }
     .tile-desc {
-        overflow-y: visible; /* Весь текст на телефонах будет виден сразу */
+        overflow-y: visible;
     }
 }
