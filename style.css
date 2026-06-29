@@ -306,13 +306,13 @@ section p { color: #d1d5db; line-height: 1.5; font-size: 0.9rem; }
         align-items: center;
     }
 
-    /* Новый компактный и чистый стиль для карточки Хитори */
+    /* Компактный и чистый стиль для карточки Хитори */
     .sidebar {
         width: 100%;
         max-width: 550px; 
-        height: auto; /* Высота теперь подстраивается под контент, никакой лишней пустоты */
-        background-image: none !important; /* Полностью убираем фоновый арт Хитори на телефонах */
-        background: var(--glass-bg); /* Оставляем только красивое полупрозрачное стекло */
+        height: auto; 
+        background-image: none !important; /* Убираем арт на телефонах */
+        background: rgba(255, 255, 255, 0.03); /* Делаем стекло чуть светлее */
     }
 
     .sidebar-content {
@@ -320,7 +320,11 @@ section p { color: #d1d5db; line-height: 1.5; font-size: 0.9rem; }
         justify-content: center;
         align-items: center;
         padding: 30px 20px;
-        gap: 15px; /* Аккуратный отступ между аватаркой и соцсетями */
+        gap: 15px; 
+        
+        /* МАГИЯ СВЕТА: Убираем черное затемнение rgba(0,0,0,0.45) */
+        /* Вместо него оставляем только размытие, чтобы сквозь карточку сочно светил розово-синий фон */
+        background: transparent !important; 
     }
 
     /* Центрируем заголовок секции проектов */
