@@ -43,13 +43,16 @@ body {
     overflow-x: hidden;
 }
 
-/* Задний фон со свечением */
+/* Задний фон со свечением + Оптимизация против чёрных артефактов */
 body::before, body::after {
     content: '';
     position: absolute;
     border-radius: 50%;
     filter: blur(100px);
     z-index: -1;
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 body::before {
     width: 450px;
@@ -121,6 +124,7 @@ body::after {
 .social-icon { font-size: 1.4rem; color: var(--text-muted); text-decoration: none; transition: color 0.3s ease, transform 0.2s ease; position: relative; }
 .social-icon:hover { color: #fff; transform: translateY(-2px); }
 
+/* Оптимизация рендеринга блура против бага с квадратами */
 .profile-card {
     background: var(--glass-bg);
     backdrop-filter: blur(16px);
@@ -133,9 +137,12 @@ body::after {
     max-width: 550px;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
     
-    /* Флекс для вертикального распределения элементов */
     display: flex;
     flex-direction: column;
+    
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 header h1 {
@@ -188,6 +195,7 @@ section p { color: #d1d5db; line-height: 1.5; font-size: 0.9rem; }
     justify-content: flex-start;
 }
 
+/* Оптимизация рендеринга блура против бага с квадратами */
 .project-tile {
     background: var(--glass-bg);
     backdrop-filter: blur(16px);
@@ -208,6 +216,10 @@ section p { color: #d1d5db; line-height: 1.5; font-size: 0.9rem; }
     margin-top: 0;
     margin-bottom: 8px;
     transition: margin 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 .tile-header { 
@@ -305,18 +317,19 @@ section p { color: #d1d5db; line-height: 1.5; font-size: 0.9rem; }
 /* --- ВСПЛЫВАЮЩЕЕ УВЕДОМЛЕНИЕ (КЛИПБОРД ТУЛТИП) --- */
 .clipboard-tooltip {
     position: absolute;
-    background: rgba(88, 101, 242, 0.9); /* Серверный цвет Discord */
+    background: rgba(88, 101, 242, 0.95); /* Серверный цвет Discord */
     color: #fff;
-    padding: 6px 12px;
+    padding: 6px 14px;
     border-radius: 8px;
     font-size: 0.75rem;
     font-weight: bold;
     pointer-events: none;
-    z-index: 9999;
+    z-index: 99999;
     box-shadow: 0 4px 15px rgba(88, 101, 242, 0.4);
     transform: translate(-50%, -100%);
     animation: tooltip-bounce 0.2s ease-out forwards;
     border: 1px solid rgba(255, 255, 255, 0.2);
+    font-family: 'JetBrains Mono', monospace;
 }
 
 .clipboard-tooltip.fade-out {
