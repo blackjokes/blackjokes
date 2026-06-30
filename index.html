@@ -26,7 +26,7 @@
                     <div class="social-links">
                         <a href="https://github.com/blackjokes" target="_blank" class="social-icon" title="GitHub"><i class="fab fa-github"></i></a>
                         <a href="https://t.me/bIackjokes" target="_blank" class="social-icon" title="Telegram"><i class="fab fa-telegram"></i></a>
-                        <a href="javascript:void(0)" class="social-icon" title="Discord"><i class="fab fa-discord"></i></a>
+                        <a href="javascript:void(0)" class="social-icon discord-copy-btn" data-clipboard="blackjokes" title="Копировать Discord"><i class="fab fa-discord"></i></a>
                     </div>
                 </div>
             </aside>
@@ -144,26 +144,24 @@
         </div>
 
     </div>
-</body>
 
-<script>
+    <script>
         document.querySelectorAll('.discord-copy-btn').forEach(button => {
             button.addEventListener('click', function(e) {
                 e.preventDefault();
                 const textToCopy = this.getAttribute('data-clipboard');
                 
+                if (!textToCopy) return;
+
                 navigator.clipboard.writeText(textToCopy).then(() => {
-                    // Создаем плавающее уведомление
                     const tooltip = document.createElement('div');
                     tooltip.className = 'clipboard-tooltip';
                     tooltip.innerText = 'Скопировано!';
                     document.body.appendChild(tooltip);
                     
-                    // Позиционируем его над курсором мыши
                     tooltip.style.left = `${e.pageX}px`;
                     tooltip.style.top = `${e.pageY - 30}px`;
                     
-                    // Удаляем через секунду после анимации исчезновения
                     setTimeout(() => {
                         tooltip.classList.add('fade-out');
                         setTimeout(() => tooltip.remove(), 300);
