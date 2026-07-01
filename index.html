@@ -3,174 +3,1182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Обо мне</title>
+    <title>blackjokes | Сайт обо мне</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/png" href="image/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="image/favicon.svg" />
-    <link rel="shortcut icon" href="image/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="image/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" href="images/favicons/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="images/favicons/favicon.svg" />
+    <link rel="shortcut icon" href="images/favicons/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicons/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-title" content="blackjokes" />
-    <link rel="manifest" href="image/site.webmanifest" />
+    <link rel="manifest" href="site.webmanifest" />
 </head>
 <body>
     <div class="page-wrapper">
         
-        <div class="main-container">
-            
-            <aside class="sidebar" style="background-image: url('image/bocchi.jpg');">
-                <div class="sidebar-content">
-                    <div class="avatar-container">
-                        <img src="image/blackjokes.jpg" alt="blackjokes" class="avatar-img">
+        <!-- СЛУЖЕБНЫЙ ЭКРАН: ГЛАВНАЯ -->
+        <div id="screen-main" class="screen-content active">
+            <div class="main-container">
+                <aside class="sidebar" style="background-image: url('images/arts/bocchi.jpg');">
+                    <div class="sidebar-content">
+                        <div class="avatar-container" id="avatarBlock">
+                            <img src="images/avatars/blackjokes.jpg" alt="blackjokes" class="avatar-img">
+                        </div>
+                        <div class="social-links">
+                            <a href="https://github.com/blackjokes" target="_blank" class="social-icon" title="GitHub"><i class="fab fa-github"></i></a>
+                            <a href="https://t.me/bIackjokes" target="_blank" class="social-icon" title="Telegram"><i class="fab fa-telegram"></i></a>
+                            <a href="javascript:void(0)" class="social-icon discord-copy-btn" data-clipboard="blackjokes" title="Копировать Discord"><i class="fab fa-discord"></i></a>
+                        </div>
                     </div>
-                    <div class="social-links">
-                        <a href="https://github.com/blackjokes" target="_blank" class="social-icon" title="GitHub"><i class="fab fa-github"></i></a>
-                        <a href="https://t.me/bIackjokes" target="_blank" class="social-icon" title="Telegram"><i class="fab fa-telegram"></i></a>
-                        <a href="javascript:void(0)" class="social-icon discord-copy-btn" data-clipboard="blackjokes" title="Копировать Discord"><i class="fab fa-discord"></i></a>
-                    </div>
-                </div>
-            </aside>
+                </aside>
 
-            <main class="profile-card">
-                <header>
-                    <h1>> Привет, я blackjokes!</h1>
-                    <p class="subtitle">✦ Per aspera ad astra!</p>
-                </header>
-                
-                <section class="about">
-                    <h2>Обо мне</h2>
-                    <p>А что обо мне? Я — дилетант широкого профиля: разбираюсь во всём, но по-немногу. Программирование, дизайн, SMM, писательство.<br> Всё могу, во всём не спец.</p>
-                </section>
+                <main class="profile-card">
+                    <header>
+                        <h1 id="greeting">> Привет, я blackjokes!</h1>
+                        <p class="subtitle" id="bdaySubtitle">✦ Per aspera ad astra!</p>
+                    </header>
+                    
+                    <section class="about-section">
+                        <p class="bio-text">А что обо мне? Я — дилетант широкого профиля: разбираюсь во всём, но понемногу. Программирование, дизайн, SMM, писательство. Всё могу, во всём не спец.</p>
+                        
+                        <div class="personal-info-grid">
+                            <div class="info-item">
+                                <span class="info-icon">📅</span>
+                                <div class="info-text">
+                                    <span class="info-label">День рождения</span>
+                                    <span class="info-value">19 февраля 2008 г.</span>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-icon">🧠</span>
+                                <div class="info-text">
+                                    <span class="info-label">Тип личности</span>
+                                    <span class="info-value">INTP-T (Логик)</span>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-icon">🗽</span>
+                                <div class="info-text">
+                                    <span class="info-label">Политические взгляды</span>
+                                    <span class="info-value">Национал-либерал</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
 
-                <section class="tech-stack">
-                    <h2>Стек</h2>
-                    <ul>
-                        <li><i class="fab fa-python tech-icon"></i> Python</li>
-                    </ul>
-                </section>
-            </main>
+                    <section class="tech-stack">
+                        <h2>Стек</h2>
+                        <ul>
+                            <li><i class="fab fa-python tech-icon"></i> Python</li>
+                            <li><i class="fab fa-html5 tech-icon"></i> HTML5 / CSS3</li>
+                            <li><i class="fab fa-git-alt tech-icon"></i> Git / GitHub</li>
+                        </ul>
+                    </section>
+                </main>
+            </div>
         </div>
 
-        <div class="projects-section">
-            
-            <h2 class="section-title">// Активные проекты</h2>
-            <div class="projects-grid">
+        <!-- СЛУЖЕБНЫЙ ЭКРАН: ИНТЕРЕСЫ -->
+        <div id="screen-interests" class="screen-content">
+            <div class="large-container">
                 
-                <div class="project-tile tile-travevill">
-                    <div class="tile-header">
-                        <div class="project-logo-wrapper">
-                            <img src="image/TraveVill_4_avatar.png" alt="" class="project-logo" onerror="this.style.parentNode.style.display='none'">
+                <!-- АНИМЕ -->
+                <h2 class="section-title">// Аниме</h2>
+                <div class="projects-grid">
+                    
+                    <div class="project-tile tile-animelib">
+                        <div class="tile-header">
+                            <div class="project-logo-wrapper">
+                                <img src="images/avatars/angel.jpg" alt="Logo" class="project-logo">
+                            </div>
+                            <div class="tile-title">
+                                <h3>Ангел по соседству</h3>
+                                <p>Романтика, Повседневность, Комедия</p>
+                            </div>
                         </div>
-                        <div class="tile-title">
-                            <h3>TraveVill</h3>
-                            <p>Minecraft-сервер</p>
+                        <p class="tile-desc">Концентрированная романтика с акцентом на бытовую повседневность и заботу. В отличие от классических ромкомов, здесь сюжет строится вокруг постепенного сближения двух соседей в домашней обстановке. Повествование сосредоточено на развитии взаимного доверия.</p>
+                        <div class="tile-footer">
+                            <div class="project-socials"></div>
+                            <a href="javascript:void(0)" class="tile-btn open-modal-trigger" data-modal="modal-anime-angel">Подробнее <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
-                    <p class="tile-desc">Здесь классическое ванильное выживание сочетается с единым, продолжающимся от сезона к сезону лором. Игроки формируют историю мира: события, конфликты, открытия и постройки становятся частью общей хроники. Если вам нравится влиять на мир своим стилем игры — добро пожаловать к нам!</p>
-                    <div class="tile-footer">
-                        <div class="project-socials">
-                            <a href="https://t.me/travevill" target="_blank" title="Telegram проекта"><i class="fab fa-telegram"></i></a>
-                            <a href="https://discord.gg/UaJRDHTnXW" target="_blank" title="Discord проекта"><i class="fab fa-discord"></i></a>
+
+                    <div class="project-tile tile-animelib">
+                        <div class="tile-header">
+                            <div class="project-logo-wrapper">
+                                <img src="images/avatars/oregairu.jpg" alt="Logo" class="project-logo">
+                            </div>
+                            <div class="tile-title">
+                                <h3>Oregairu</h3>
+                                <p>Драма, Психология, Романтика, Комедия, Школа</p>
+                            </div>
                         </div>
-                        <a href="https://blackjokes.travevill.ru/travevill.mp4" class="tile-btn">Подробнее <i class="fas fa-arrow-right"></i></a>
+                        <p class="tile-desc">Школьная драма с глубоким психологизмом и нетипичным главным героем. Повествование строится вокруг деконструкции жанровых штампов через призму циничного персонажа. Сюжет фокусируется на сложных социальных связях, природе человеческого эгоизма и поиске искренности.</p>
+                        <div class="tile-footer">
+                            <div class="project-socials"></div>
+                            <a href="javascript:void(0)" class="tile-btn open-modal-trigger" data-modal="modal-anime-oregairu">Подробнее <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="project-tile tile-animelib">
+                        <div class="tile-header">
+                            <div class="project-logo-wrapper">
+                                <img src="images/avatars/eighty-six.jpg" alt="Logo" class="project-logo">
+                            </div>
+                            <div class="tile-title">
+                                <h3>Восемьдесят шесть</h3>
+                                <p>Военное, Драма, Фантастика, Экшен</p>
+                            </div>
+                        </div>
+                        <p class="tile-desc">Военно-политическая драма с сильным социальным подтекстом и детальной режиссурой. Сюжет раскрывает темы расовой дискриминации, цинизма пропаганды и состояния солдат на передовой. Сильная сторона тайтла — глубокий фокус на ценности человеческой жизни.</p>
+                        <div class="tile-footer">
+                            <div class="project-socials"></div>
+                            <a href="javascript:void(0)" class="tile-btn open-modal-trigger" data-modal="modal-anime-eightysix">Подробнее <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="project-tile tile-animelib">
+                        <div class="tile-header">
+                            <div class="project-logo-wrapper">
+                                <img src="images/avatars/bocchi-the-rock.jpg" alt="Logo" class="project-logo">
+                            </div>
+                            <div class="tile-title">
+                                <h3>Одинокий рокер!</h3>
+                                <p>Музыка, Комедия, Повседневность</p>
+                            </div>
+                        </div>
+                        <p class="tile-desc">Музыкальная комедия, точно визуализирующая тему социальной тревожности. Аниме выделяется экспериментальной анимацией, которая через абсурдные визуальные метафоры передает панические атаки. Сюжет сочетает процесс создания рок-группы и путь преодоления замкнутости.</p>
+                        <div class="tile-footer">
+                            <div class="project-socials"></div>
+                            <a href="javascript:void(0)" class="tile-btn open-modal-trigger" data-modal="modal-anime-bocchi">Подробнее <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- РАНОБЭ -->
+                <h2 class="section-title" style="margin-top: 40px;">// Ранобэ</h2>
+                <div class="projects-grid">
+                    <div class="project-tile tile-ranobelib">
+                        <div class="tile-header">
+                            <div class="project-logo-wrapper">
+                                <img src="images/avatars/oregairu-ranobe.jpg" alt="Logo" class="project-logo">
+                            </div>
+                            <div class="tile-title">
+                                <h3>Розовая пора моей школьной жизни сплошной обман (Новелла)</h3>
+                                <p>Драма, Психология, Романтика, Комедия, Школа</p>
+                            </div>
+                        </div>
+                        <p class="tile-desc">Оригинальная новелла Ватару Ватари. Значительно глубже раскрывает внутренние монологи Хатимана, сложные социальные дилеммы и психологические нюансы взаимоотношений.</p>
+                        <div class="tile-footer">
+                            <div class="project-socials"></div>
+                            <a href="javascript:void(0)" class="tile-btn open-modal-trigger" data-modal="modal-ranobe-oregairu">Подробнее <i class="fas fa-arrow-right"></i></a>
+                        </div>
                     </div>
                 </div>
 
-                <div class="project-tile tile-polityevo">
-                    <div class="tile-header">
-                        <div class="project-logo-wrapper">
-                            <img src="image/PolityEvo_avatar_(stars).png" alt="" class="project-logo" onerror="this.style.parentNode.style.display='none'">
+                <!-- ИГРЫ -->
+                <h2 class="section-title" style="margin-top: 40px;">// Игры</h2>
+                <div class="projects-grid">
+                    
+                    <div class="project-tile tile-minecraft">
+                        <div class="tile-header">
+                            <div class="project-logo-wrapper">
+                                <img src="images/avatars/minecraft.jpg" alt="Logo" class="project-logo">
+                            </div>
+                            <div class="tile-title">
+                                <h3>Minecraft</h3>
+                                <p>Песочница, Выживание, Симулятор</p>
+                            </div>
                         </div>
-                        <div class="tile-title">
-                            <h3>PolityEvo</h3>
-                            <p>Minecraft-сервер</p>
+                        <p class="tile-desc">Идеальное пространство для создания миров, реализации технических проектов на редстоуне и лампового выживания сквадом.</p>
+                        <div class="tile-footer">
+                            <div class="project-socials"></div>
+                            <a href="javascript:void(0)" class="tile-btn open-modal-trigger" data-modal="modal-game-minecraft">Подробнее <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
-                    <p class="tile-desc">Это военно-политическая песочница, развернутая на базе нашей уникальной авторской сборки модификаций. Вы попали в живой, развивающийся мир со своей историей, шрамы которой тянутся из далекого прошлого.</p>
-                    <div class="tile-footer">
-                        <div class="project-socials">
-                            <a href="https://t.me/polityevo" target="_blank" title="Telegram проекта"><i class="fab fa-telegram"></i></a>
-                            <a href="https://discord.gg/szF5jDfvCu" target="_blank" title="Discord проекта"><i class="fab fa-discord"></i></a>
-                        </div>
-                        <a href="https://blackjokes.travevill.ru/travevill.mp4" class="tile-btn">Подробнее <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
 
-                <div class="project-tile tile-discord-server">
-                    <div class="tile-header">
-                        <div class="project-logo-wrapper">
-                            <img src="image/blackwhite.png" alt="" class="project-logo" onerror="this.style.parentNode.style.display='none'">
+                    <div class="project-tile tile-re8">
+                        <div class="tile-header">
+                            <div class="project-logo-wrapper">
+                                <img src="images/avatars/re8.jpg" alt="Logo" class="project-logo">
+                            </div>
+                            <div class="tile-title">
+                                <h3>Resident Evil Village</h3>
+                                <p>Survival horror, Экшен, Приключение</p>
+                            </div>
                         </div>
-                        <div class="tile-title">
-                            <h3>Black/White</h3>
-                            <p>Discord-сообщество</p>
+                        <p class="tile-desc">Хоррор на выживание с акцентом на экшен и исследование. Сюжет сочетает мрачную готическую атмосферу европейской глуши и динамичные сражения с уникальными боссами.</p>
+                        <div class="tile-footer">
+                            <div class="project-socials"></div>
+                            <a href="javascript:void(0)" class="tile-btn open-modal-trigger" data-modal="modal-game-re8">Подробнее <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
-                    <p class="tile-desc">Ламповый сервер для общения, поиска тиммейтов, обсуждения кода, музыки, аниме и просто хорошего времяпрепровождения. Simplicitas est fortitudo.</p>
-                    <div class="tile-footer">
-                        <div class="project-socials">
-                            <a href="https://discord.gg/ceJnXbeyJk" target="_blank" title="Инвайт на сервер"><i class="fas fa-link"></i></a>
-                        </div>
-                        <a href="https://discord.gg/ceJnXbeyJk" class="tile-btn">Войти <i class="fas fa-sign-in-alt"></i></a>
-                    </div>
-                </div>
 
+                    <div class="project-tile tile-hsr">
+                        <div class="tile-header">
+                            <div class="project-logo-wrapper">
+                                <img src="images/avatars/Honkai Star Rail.ico" alt="Logo" class="project-logo">
+                            </div>
+                            <div class="tile-title">
+                                <h3>Honkai: Star Rail</h3>
+                                <p>JRPG, Пошаговая стратегия, Фэнтези</p>
+                            </div>
+                        </div>
+                        <p class="tile-desc">Масштабное космическое фэнтези с пошаговой тактической системой. Повествование сфокусировано на исследовании разных планет и синергии персонажей в бою.</p>
+                        <div class="tile-footer">
+                            <div class="project-socials"></div>
+                            <a href="javascript:void(0)" class="tile-btn open-modal-trigger" data-modal="modal-game-hsr">Подробнее <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="project-tile tile-gtav">
+                        <div class="tile-header">
+                            <div class="project-logo-wrapper">
+                                <img src="images/avatars/gtav.png" alt="Logo" class="project-logo">
+                            </div>
+                            <div class="tile-title">
+                                <h3>GTA V</h3>
+                                <p>Экшен, Открытый мир, Шутер</p>
+                            </div>
+                        </div>
+                        <p class="tile-desc">Культовый экшен в открытом мире с тремя главными героями. Сюжет сосредоточен на масштабных ограблениях в Лос-Сантосе и криминальной свободе действий.</p>
+                        <div class="tile-footer">
+                            <div class="project-socials"></div>
+                            <a href="javascript:void(0)" class="tile-btn open-modal-trigger" data-modal="modal-game-gtav">Подробнее <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="project-tile tile-stray">
+                        <div class="tile-header">
+                            <div class="project-logo-wrapper">
+                                <img src="images/avatars/stray.jpg" alt="Logo" class="project-logo">
+                            </div>
+                            <div class="tile-title">
+                                <h3>Stray</h3>
+                                <p>Приключение, Квест, Платформер</p>
+                            </div>
+                        </div>
+                        <p class="tile-desc">Атмосферное приключение с элементами квеста от лица бродячего кота. Сюжет строится вокруг исследования неонового киберпанк-города, населенного роботами.</p>
+                        <div class="tile-footer">
+                            <div class="project-socials"></div>
+                            <a href="javascript:void(0)" class="tile-btn open-modal-trigger" data-modal="modal-game-stray">Подробнее <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                </div>
             </div>
-
-            <h2 class="section-title" style="margin-top: 20px;">// Закрытые проекты</h2>
-            <div class="projects-grid">
-                
-                <div class="project-tile tile-blitzstats">
-                    <div class="tile-header">
-                        <div class="project-logo-wrapper">
-                            <img src="image/blitzstats.jpg" alt="" class="project-logo" onerror="this.style.parentNode.style.display='none'">
-                        </div>
-                        <div class="tile-title">
-                            <h3>BlitzStats</h3>
-                            <p>Discord-бот / Статистика</p>
-                        </div>
-                    </div>
-                    <p class="tile-desc">Легендарный Discord-бот для сбора сессионной статистики игроков WoT & Tanks Blitz, пришедший на замену умершему Aftermath. В 2023–2024 годах проект прочно удерживал лидерство в нише. Закрыт из-за дороговизны содержания и регулярных сбоев на стороне игрового API.</p>
-                    <div class="tile-footer">
-                        <div class="project-socials">
-                            <a href="javascript:void(0)" style="opacity: 0.4; cursor: not-allowed;" title="Проект закрыт"><i class="fas fa-ghost"></i></a>
-                        </div>
-                        <span class="tile-btn" style="opacity: 0.6; pointer-events: none;">Архив (19.08.2024) <i class="fas fa-lock"></i></span>
-                    </div>
-                </div>
-
-            </div>
-
         </div>
+
+        <!-- СЛУЖЕБНЫЙ ЭКРАН: ПРОЕКТЫ -->
+        <div id="screen-projects" class="screen-content">
+            <div class="projects-section">
+                <h2 class="section-title">// Активные проекты</h2>
+                <div class="projects-grid">
+                    <div class="project-tile tile-travevill">
+                        <div class="tile-header">
+                            <div class="project-logo-wrapper">
+                                <img src="images/avatars/travevill.png" alt="Logo" class="project-logo">
+                            </div>
+                            <div class="tile-title">
+                                <h3>TraveVill</h3>
+                                <p>Minecraft-сервер</p>
+                            </div>
+                        </div>
+                        <p class="tile-desc">Здесь классическое ванильное выживание сочетается с единым, продолжающимся от сезона к сезону лором. Игроки формируют историю мира: события, конфликты, открытия и постройки становятся частью общей хроники.</p>
+                        <div class="tile-footer">
+                            <div class="project-socials">
+                                <a href="https://t.me/travevill" target="_blank" title="Telegram проекта"><i class="fab fa-telegram"></i></a>
+                                <a href="https://discord.gg/UaJRDHTnXW" target="_blank" title="Discord проекта"><i class="fab fa-discord"></i></a>
+                            </div>
+                            <a href="https://blackjokes.travevill.ru/travevill.mp4" class="tile-btn">Подробнее <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="project-tile tile-polityevo">
+                        <div class="tile-header">
+                            <div class="project-logo-wrapper">
+                                <img src="images/avatars/polityevo.png" alt="Logo" class="project-logo">
+                            </div>
+                            <div class="tile-title">
+                                <h3>PolityEvo</h3>
+                                <p>Minecraft-сервер</p>
+                            </div>
+                        </div>
+                        <p class="tile-desc">Это военно-политическая песочница, развернутая на базе нашей уникальной авторской сборки модификаций. Вы попали в живой, развивающийся мир со своей историей.</p>
+                        <div class="tile-footer">
+                            <div class="project-socials">
+                                <a href="https://t.me/polityevo" target="_blank" title="Telegram проекта"><i class="fab fa-telegram"></i></a>
+                                <a href="https://discord.gg/szF5jDfvCu" target="_blank" title="Discord проекта"><i class="fab fa-discord"></i></a>
+                            </div>
+                            <a href="https://blackjokes.travevill.ru/travevill.mp4" class="tile-btn">Подробнее <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="project-tile tile-discord-server">
+                        <div class="tile-header">
+                            <div class="project-logo-wrapper">
+                                <img src="images/avatars/blackwhite.png" alt="Logo" class="project-logo">
+                            </div>
+                            <div class="tile-title">
+                                <h3>Black/White</h3>
+                                <p>Discord-сообщество</p>
+                            </div>
+                        </div>
+                        <p class="tile-desc">Ламповый сервер для общения, поиска тиммейтов, обсуждения кода, музыки, аниме и просто хорошего времяпрепровождения. Simplicitas est fortitudo.</p>
+                        <div class="tile-footer">
+                            <div class="project-socials">
+                                <a href="https://discord.gg/ceJnXbeyJk" target="_blank" title="Инвайт на сервер"><i class="fas fa-link"></i></a>
+                            </div>
+                            <a href="https://discord.gg/ceJnXbeyJk" class="tile-btn">Войти <i class="fas fa-sign-in-alt"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="section-title" style="margin-top: 30px;">// Закрытые проекты</h2>
+                <div class="projects-grid">
+                    <div class="project-tile tile-blitzstats">
+                        <div class="tile-header">
+                            <div class="project-logo-wrapper">
+                                <img src="images/avatars/blitzstats.jpg" alt="Logo" class="project-logo">
+                            </div>
+                            <div class="tile-title">
+                                <h3>BlitzStats</h3>
+                                <p>Discord-бот / Дизайн</p>
+                            </div>
+                        </div>
+                        <p class="tile-desc">Легендарный Discord-бот для сбора сессионной статистики игроков WoT & Tanks Blitz. В 2023–2024 годах проект прочно удерживал лидерство в нише. Закрыт из-за дороговизны содержания и регулярных сбоев на стороне игрового API.</p>
+                        <div class="tile-footer">
+                            <div class="project-socials">
+                                <a href="javascript:void(0)" style="opacity: 0.4; cursor: not-allowed;" title="Проект закрыт"><i class="fas fa-ghost"></i></a>
+                            </div>
+                            <span class="tile-btn" style="opacity: 0.6; pointer-events: none;">Архив (19.08.2024) <i class="fas fa-lock"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- СЛУЖЕБНЫЙ ЭКРАН: ПРОФИЛИ -->
+        <div id="screen-profiles" class="screen-content">
+            <div class="large-container">
+                <h2 class="section-title">// Игровые платформы и соцсети</h2>
+                <div class="profiles-large-grid">
+
+                    <a href="https://steamcommunity.com/id/bIackjokes/" target="_blank" class="profile-card-large steam">
+                        <div class="p-card-icon"><i class="fab fa-steam"></i></div>
+                        <div class="p-card-info"><h3>Steam</h3><p>blackjokes</p></div>
+                    </a>
+
+                    <div class="profile-card-large epic" onclick="copyEpicHandle()">
+                        <div class="p-card-icon">
+                            <img src="https://unpkg.com/simple-icons@v9/icons/epicgames.svg" class="epic-svg-icon" alt="Epic Games">
+                        </div>
+                        <div class="p-card-info">
+                            <h3>Epic Games</h3>
+                            <p id="epicHandle">bIackjokes</p>
+                        </div>
+                    </div>
+
+                    <div class="profile-card-large xbox" onclick="copyXboxHandle()">
+                        <div class="p-card-icon"><i class="fab fa-xbox"></i></div>
+                        <div class="p-card-info">
+                            <h3>Xbox Live</h3>
+                            <p id="xboxHandle">blackjokes7077</p>
+                        </div>
+                    </div>
+
+                    <a href="https://www.reddit.com/user/blackjokes_" target="_blank" class="profile-card-large reddit">
+                        <div class="p-card-icon"><i class="fab fa-reddit-alien"></i></div>
+                        <div class="p-card-info"><h3>Reddit</h3><p>blackjokes_</p></div>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- НАВИГАЦИОННЫЙ ДОК -->
+        <nav class="tg-dock-nav">
+            <div class="dock-bg-slider"></div>
+            <button class="dock-item active" data-screen="screen-main"><i class="fas fa-user"></i><span>Главная</span></button>
+            <button class="dock-item" data-screen="screen-interests"><i class="fas fa-heart"></i><span>Интересы</span></button>
+            <button class="dock-item" data-screen="screen-projects"><i class="fas fa-code"></i><span>Проекты</span></button>
+            <button class="dock-item" data-screen="screen-profiles"><i class="fas fa-gamepad"></i><span>Профили</span></button>
+        </nav>
 
     </div>
 
+    <!-- КОРНЕВОЙ ОВЕРЛЕЙ ДЛЯ МОДАЛОК -->
+    <div class="modal-root-overlay" id="globalModalOverlay">
+        
+        <!-- МОДАЛКА: АНГЕЛ ПО СОСЕДСТВУ -->
+        <div class="animelib-modal-container" id="modal-anime-angel">
+            <button class="close-modal-x">&times;</button>
+            <div class="animelib-cover-blur" style="background-image: url('image/angel.jpg');"></div>
+            
+            <div class="modal-slider-track">
+                <div class="modal-slider-page">
+                    <div class="animelib-content-wrapper">
+                        <div class="animelib-left-meta">
+                            <img src="images/banners/angel-1.jpg" class="animelib-main-poster" alt="Постер">
+                            <div class="animelib-rating-box">⭐ 8.69 / 10</div>
+                            <a href="https://v5.animelib.org/ru/anime/19714--otonari-no-tenshi-sama-ni-itsunomanika-dame-ningen-ni-sareteita-ken-anime" target="_blank" class="animelib-action-button">
+                                Смотреть на AnimeLIB 
+                                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3.5 2H10V8.5M10 2L2 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </a>
+                        </div>
+                        <div class="animelib-right-info">
+                            <h2 class="animelib-title">Ангел по соседству</h2>
+                            <p class="animelib-jap-title">Otonari no Tenshi-sama ni Itsunomanika Dame Ningen ni Sareteita Ken</p>
+                            
+                            <div class="animelib-details-grid">
+                                <div><strong>Тип:</strong> ТВ-сериал</div>
+                                <div><strong>Состояние:</strong> Завершён</div>
+                                <div><strong>Эпизоды:</strong> 12</div>
+                                <div><strong>Год выпуска:</strong> 2023</div>
+                                <div><strong>Студия:</strong> Project No.9</div>
+                                <div><strong>Автор:</strong> Saeki-san</div>
+                            </div>
+
+                            <div class="animelib-genres-chips">
+                                <span>Повседневность</span><span>Романтика</span><span>Комедия</span>
+                            </div>
+                            <h3 class="animelib-sub-heading">Описание</h3>
+                            <p class="animelib-summary">Аманэ — неряшливый старшеклассник-одиночка, а его соседка Махиру — первая красавица школы и всеобщая любимица. Между ними нет ничего общего, пока в дождливый день парень не отдает девушке свой зонт. Простудившись после этого, Аманэ получает неожиданную заботу от благодарной соседки. Так начинается уютная романтическая история противоположностей, полная тепла, искренней заботы и милых неловкостей.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-slider-page">
+                    <div class="animelib-content-wrapper">
+                        <div class="animelib-left-meta">
+                            <img src="images/banners/angel-2.jpg" class="animelib-main-poster" alt="Постер 2">
+                            <div class="animelib-rating-box">⭐ 8.65 / 10</div>
+                            <a href="https://v5.animelib.org/ru/anime/22945--otonari-no-tenshi-sama-ni-itsunomanika-dame-ningen-ni-sareteita-ken-2-anime" target="_blank" class="animelib-action-button">
+                                Смотреть на AnimeLIB
+                                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3.5 2H10V8.5M10 2L2 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </a>
+                        </div>
+                        <div class="animelib-right-info">
+                            <h2 class="animelib-title">Ангел по соседству 2</h2>
+                            <p class="animelib-jap-title">Otonari no Tenshi-sama ni Itsunomanika Dame Ningen ni Sareteita Ken 2</p>
+                            
+                            <div class="animelib-details-grid">
+                                <div><strong>Тип:</strong> ТВ-сериал</div>
+                                <div><strong>Состояние:</strong> Завершён</div>
+                                <div><strong>Эпизоды:</strong> 12</div>
+                                <div><strong>Год выпуска:</strong> 2026</div>
+                                <div><strong>Студия:</strong> Project No.9</div>
+                                <div><strong>Автор:</strong> Saeki-san</div>
+                            </div>
+
+                            <div class="animelib-genres-chips">
+                                <span>Повседневность</span><span>Романтика</span><span>Комедия</span>
+                            </div>
+                            <h3 class="animelib-sub-heading">Описание</h3>
+                            <p class="animelib-summary">Второй год обучения в старшей школе приносит в размеренную жизнь Аманэ Фудзимии и Махиру Сиины новые испытания. Привычные будни постепенно меняются, заставляя героев выйти из зоны комфорта и встретить неожиданные вызовы как в стенах школы, так и за её пределами. Когда их личное пространство привлекает неизбежное внимание окружающих, им предстоит решить, как справиться с давлением общества и внутренними сомнениями.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-seasons-dock-wrapper">
+                <nav class="modal-seasons-dock">
+                    <div class="season-slider-bg"></div>
+                    <button class="season-dock-item active" data-index="0">1 сезон</button>
+                    <button class="season-dock-item" data-index="1">2 сезон</button>
+                </nav>
+            </div>
+        </div>
+
+        <!-- МОДАЛКА: OREGAIRU ANIME -->
+        <div class="animelib-modal-container" id="modal-anime-oregairu">
+            <button class="close-modal-x">&times;</button>
+            <div class="animelib-cover-blur" style="background-image: url('image/oregairu.jpg');"></div>
+
+            <div class="modal-slider-track">
+                <div class="modal-slider-page">
+                    <div class="animelib-content-wrapper">
+                        <div class="animelib-left-meta">
+                            <img src="images/banners/oregairu-1.jpg" class="animelib-main-poster" alt="Постер">
+                            <div class="animelib-rating-box">⭐ 8.5 / 10</div>
+                            <a href="https://v5.animelib.org/ru/anime/7119--yahari-ore-no-seishun-love-comedy-wa-machigatteiru-anime" target="_blank" class="animelib-action-button">
+                                Смотреть на AnimeLIB
+                                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3.5 2H10V8.5M10 2L2 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </a>
+                        </div>
+                        <div class="animelib-right-info">
+                            <h2 class="animelib-title">Как и ожидалось, моя школьная романтическая жизнь не удалась</h2>
+                            <p class="animelib-jap-title">Yahari Ore no Seishun Love Comedy wa Machigatteiru.</p>
+
+                            <div class="animelib-details-grid">
+                                <div><strong>Тип:</strong> ТВ-сериал</div>
+                                <div><strong>Состояние:</strong> Завершён</div>
+                                <div><strong>Эпизоды:</strong> 13</div>
+                                <div><strong>Год выпуска:</strong> 2013</div>
+                                <div><strong>Студия:</strong> Brain's Base</div>
+                                <div><strong>Автор:</strong> Wataru Watari</div>
+                            </div>
+
+                            <div class="animelib-genres-chips">
+                               <span>Комедия</span><span>Романтика</span><span>Школа</span><span>Психология</span>
+                            </div>
+                            <h3 class="animelib-sub-heading">Описание</h3>
+                            <p class="animelib-summary">Хачиман Хикигая — циничный старшеклассник, который считает дружбу и романтику лживой клоунадой. В наказание за дерзкое сочинение учительница заставляет его вступить в клуб взаимопомощи. Его президент, первая красавица школы Юкино Юкиношита, сразу решает исправить сложный характер новичка. Столкнувшись характерами, двое одиночек берутся помогать другим, еще не понимая, что в помощи нуждаются они сами.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-slider-page">
+                    <div class="animelib-content-wrapper">
+                        <div class="animelib-left-meta">
+                            <img src="images/banners/oregairu-2.jpg" class="animelib-main-poster" alt="Постер 2">
+                            <div class="animelib-rating-box">⭐ 8.54 / 10</div>
+                            <a href="https://v5.animelib.org/ru/anime/19998--yahari-ore-no-seishun-love-comedy-wa-machigatteiru-zoku-anime" target="_blank" class="animelib-action-button">
+                                Смотреть на AnimeLIB
+                                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3.5 2H10V8.5M10 2L2 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </a>
+                        </div>
+                        <div class="animelib-right-info">
+                            <h2 class="animelib-title">Как и ожидалось, моя школьная романтическая жизнь не удалась 2</h2>
+                            <p class="animelib-jap-title">Yahari Ore no Seishun Love Comedy wa Machigatteiru. Zoku</p>
+
+                            <div class="animelib-details-grid">
+                                <div><strong>Тип:</strong> ТВ-сериал</div>
+                                <div><strong>Состояние:</strong> Завершён</div>
+                                <div><strong>Эпизоды:</strong> 13</div>
+                                <div><strong>Год выпуска:</strong> 2015</div>
+                                <div><strong>Студия:</strong> feel.</div>
+                                <div><strong>Автор:</strong> Wataru Watari</div>
+                            </div>
+
+                            <div class="animelib-genres-chips">
+                               <span>Комедия</span><span>Романтика</span><span>Школа</span><span>Психология</span>
+                            </div>
+                            <h3 class="animelib-sub-heading">Описание</h3>
+                            <p class="animelib-summary">Во втором сезоне клуб помощи сталкивается с кризисом, а циничные методы Хачимана начинают разрушать его отношения с Юкино и Юи. Героям предстоит решать не только чужие проблемы, но и разбираться в собственных запутанных чувствах. Бесконечные недомолвки и страх разрушить хрупкую дружбу ставят под угрозу существование самого клуба. Смогут ли они наконец поговорить искренне и найти то самое «настоящее»?</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-slider-page">
+                    <div class="animelib-content-wrapper">
+                        <div class="animelib-left-meta">
+                            <img src="images/banners/oregairu-3.jpg" class="animelib-main-poster" alt="Постер 3">
+                            <div class="animelib-rating-box">⭐ 8.74 / 10</div>
+                            <a href="https://v5.animelib.org/ru/anime/15458--yahari-ore-no-seishun-love-comedy-wa-machigatteiru-kan-anime" target="_blank" class="animelib-action-button">
+                                Смотреть на AnimeLIB
+                                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3.5 2H10V8.5M10 2L2 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </a>
+                        </div>
+                        <div class="animelib-right-info">
+                            <h2 class="animelib-title">Как и ожидалось, моя школьная романтическая жизнь не удалась 3</h2>
+                            <p class="animelib-jap-title">Yahari Ore no Seishun Love Comedy wa Machigatteiru. Kan</p>
+
+                            <div class="animelib-details-grid">
+                                <div><strong>Тип:</strong> ТВ-сериал</div>
+                                <div><strong>Состояние:</strong> Завершён</div>
+                                <div><strong>Эпизоды:</strong> 12</div>
+                                <div><strong>Год выпуска:</strong> 2020</div>
+                                <div><strong>Студия:</strong> feel.</div>
+                                <div><strong>Автор:</strong> Wataru Watari</div>
+                            </div>
+
+                            <div class="animelib-genres-chips">
+                               <span>Комедия</span><span>Романтика</span><span>Школа</span><span>Психология</span>
+                            </div>
+                            <h3 class="animelib-sub-heading">Описание тайтла</h3>
+                            <p class="animelib-summary">Выпускной бал уже на носу, и членам клуба помощи предстоит организовать его вопреки всем трудностям. Однако подготовка к финалу школьной жизни меркнет перед главной проблемой: Хачиману, Юкино и Юи пора наконец отбросить недомолвки и искренне признаться в своих чувствах. Смогут ли они подобрать правильные слова, чтобы развеять все сомнения, преодолеть прошлые обиды и спасти то, что им по-настоящему дорого?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-seasons-dock-wrapper">
+                <nav class="modal-seasons-dock">
+                    <div class="season-slider-bg"></div>
+                    <button class="season-dock-item active" data-index="0">1 сезон</button>
+                    <button class="season-dock-item" data-index="1">2 сезон</button>
+                    <button class="season-dock-item" data-index="2">3 сезон</button>
+                </nav>
+            </div>
+        </div>
+
+        <!-- МОДАЛКА: 86 -->
+        <div class="animelib-modal-container" id="modal-anime-eightysix">
+            <button class="close-modal-x">&times;</button>
+            <div class="animelib-cover-blur" style="background-image: url('image/86-modal.jpg');"></div>
+
+            <div class="modal-slider-track">
+                <div class="modal-slider-page">
+                    <div class="animelib-content-wrapper">
+                        <div class="animelib-left-meta">
+                            <img src="images/banners/eighty-six-1.jpg" class="animelib-main-poster" alt="Постер">
+                            <div class="animelib-rating-box">⭐ 9.19 / 10</div>
+                            <a href="https://v5.animelib.org/ru/anime/16479--86-anime" target="_blank" class="animelib-action-button">
+                                Смотреть на AnimeLIB
+                                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3.5 2H10V8.5M10 2L2 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </a>
+                        </div>
+                        <div class="animelib-right-info">
+                            <h2 class="animelib-title">Восемьдесят шесть</h2>
+                            <p class="animelib-jap-title">86: Eighty Six</p>
+
+                            <div class="animelib-details-grid">
+                                <div><strong>Тип:</strong> ТВ-сериал</div>
+                                <div><strong>Состояние:</strong> Завершён</div>
+                                <div><strong>Год выпуска:</strong> 2021</div>
+                                <div><strong>Эпизоды:</strong> 11</div>
+                                <div><strong>Студия:</strong> A-1 Pictures</div>
+                                <div><strong>Автор:</strong> Asato Asato</div>
+                            </div>
+
+                            <div class="animelib-genres-chips">
+                                <span>Драма</span><span>Меха</span><span>Военное</span><span>Экшен</span>
+                            </div>
+                            <h3 class="animelib-sub-heading">Описание тайтла</h3>
+                            <p class="animelib-summary">Республика Сан-Магнолия заявляет, что ведет войну с Империей с помощью беспилотников и без человеческих жертв. Однако это лишь жестокая ложь. На передовой, в «несуществующем» 86-м округе, пилотами этих машин становятся угнетаемые граждане, которыми цинично жертвует сытое правительство. В этой атмосфере лжи, расизма и вечного страха потерь героям предстоит столкнуться с жестокой правдой войны и попытаться выжить там, где их жизней официально не существует.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-slider-page">
+                    <div class="animelib-content-wrapper">
+                        <div class="animelib-left-meta">
+                            <img src="images/banners/eighty-six-2.jpg" class="animelib-main-poster" alt="Постер">
+                            <div class="animelib-rating-box">⭐ 9.42 / 10</div>
+                            <a href="https://v5.animelib.org/ru/anime/18800--86-part-2-anime" target="_blank" class="animelib-action-button">
+                                Смотреть на AnimeLIB
+                                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3.5 2H10V8.5M10 2L2 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </a>
+                        </div>
+                        <div class="animelib-right-info">
+                            <h2 class="animelib-title">Восемьдесят шесть. Часть 2</h2>
+                            <p class="animelib-jap-title">86 Part 2</p>
+
+                            <div class="animelib-details-grid">
+                                <div><strong>Тип:</strong> ТВ-сериал</div>
+                                <div><strong>Состояние:</strong> Завершён</div>
+                                <div><strong>Год выпуска:</strong> 2021</div>
+                                <div><strong>Эпизоды:</strong> 12</div>
+                                <div><strong>Студия:</strong> A-1 Pictures</div>
+                                <div><strong>Автор:</strong> Asato Asato</div>
+                            </div>
+
+                            <div class="animelib-genres-chips">
+                                <span>Драма</span><span>Меха</span><span>Военное</span><span>Экшен</span>
+                            </div>
+                            <h3 class="animelib-sub-heading">Описание тайтла</h3>
+                            <p class="animelib-summary">Остатки отряда «Остриё копья» во главе с Синъэем Нодзэном были отправлены в последнюю специальную миссию, цель которой — продвигаться в глубь «Легиона», пока команда не будет уничтожена. И когда конец был уже близок, их неожиданно спасли от неминуемой смерти военные Федеративной Республики Гияд. В новой стране у измождённых воинов появляется возможность забыть о войне, жить счастливой жизнью и быть не «свинками», а людьми. Но что-то не даёт им покоя, словно эта новая жизнь чужая и совсем не та, какую они хотели.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-seasons-dock-wrapper">
+                <nav class="modal-seasons-dock">
+                    <div class="season-slider-bg"></div>
+                    <button class="season-dock-item active" data-index="0">1 сезон (Часть 1)</button>
+                    <button class="season-dock-item" data-index="1">1 сезон (Часть 2)</button>
+                </nav>
+            </div>
+        </div>
+
+        <!-- МОДАЛКА: BOCCHI THE ROCK -->
+        <div class="animelib-modal-container" id="modal-anime-bocchi">
+            <button class="close-modal-x">&times;</button>
+            <div class="animelib-cover-blur" style="background-image: url('image/bocchi-modal.jpg');"></div>
+
+            <div class="modal-slider-track">
+                <div class="modal-slider-page">
+                    <div class="animelib-content-wrapper">
+                        <div class="animelib-left-meta">
+                            <img src="images/banners/bocchi-the-rock-1.jpg" class="animelib-main-poster" alt="Постер">
+                            <div class="animelib-rating-box">⭐ 9.18 / 10</div>
+                            <a href="https://v5.animelib.org/ru/anime/18521--bocchi-the-rock-anime" target="_blank" class="animelib-action-button">
+                                Смотреть на AnimeLIB
+                                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3.5 2H10V8.5M10 2L2 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </a>
+                        </div>
+                        <div class="animelib-right-info">
+                            <h2 class="animelib-title">Одинокий рокер!</h2>
+                            <p class="animelib-jap-title">Bocchi the Rock!</p>
+                            <div class="animelib-details-grid">
+                                <div><strong>Тип:</strong> ТВ-сериал</div>
+                                <div><strong>Состояние:</strong> Завершён</div>
+                                <div><strong>Год выпуска:</strong> 2022</div>
+                                <div><strong>Эпизоды:</strong> 12</div>
+                                <div><strong>Студия:</strong> CloverWorks</div>
+                                <div><strong>Автор:</strong> Aki Hamaji</div>
+                            </div>
+                            <div class="animelib-genres-chips">
+                                <span>Музыка</span><span>Комедия</span><span>Повседневность</span>
+                            </div>
+                            <h3 class="animelib-sub-heading">Описание тайтла</h3>
+                            <p class="animelib-summary">Ламповая, жизненная и невероятно стильная комедия о преодолении интроверсии через общее творчество. Хитори «Боччи-тян» Гото учится коммуницировать с миром посредством своей потрясающей игры на гитаре в составе «Жгучего Квартета».</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-slider-page">
+                    <div class="animelib-content-wrapper">
+                        <div class="animelib-left-meta">
+                            <img src="images/banners/bocchi-the-rock-2.jpg" class="animelib-main-poster" alt="Постер 2">
+                            <div class="animelib-rating-box">Анонс</div>
+                            <a href="https://v5.animelib.org/ru/anime/25255--bocchi-the-rock-2nd-seasom-anime" target="_blank" class="animelib-action-button">
+                                Смотреть на AnimeLIB
+                                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3.5 2H10V8.5M10 2L2 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </a>
+                        </div>
+                        <div class="animelib-right-info">
+                            <h2 class="animelib-title">Одинокий рокер! 2</h2>
+                            <p class="animelib-jap-title">Bocchi the Rock! 2nd Season</p>
+                            <div class="animelib-details-grid">
+                                <div><strong>Тип:</strong> ТВ-сериал</div>
+                                <div><strong>Состояние:</strong> Анонс</div>
+                                <div><strong>Год выпуска:</strong> —</div>
+                                <div><strong>Эпизоды:</strong> —</div>
+                                <div><strong>Студия:</strong> CloverWorks</div>
+                                <div><strong>Автор:</strong> Aki Hamaji</div>
+                            </div>
+                            <div class="animelib-genres-chips">
+                                <span>Музыка</span><span>Комедия</span><span>Повседневность</span>
+                            </div>
+                            <h3 class="animelib-sub-heading">Описание тайтла</h3>
+                            <p class="animelib-summary">Ламповая, жизненная и невероятно стильная комедия о преодолении интроверсии через общее творчество. Хитори «Боччи-тян» Гото учится коммуницировать с миром посредством своей потрясающей игры на гитаре в составе «Жгучего Квартета».</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="modal-seasons-dock-wrapper">
+                <nav class="modal-seasons-dock">
+                    <div class="season-slider-bg"></div>
+                    <button class="season-dock-item active" data-index="0">1 сезон</button>
+                    <button class="season-dock-item" data-index="1">2 сезон</button>
+                </nav>
+            </div>
+        </div>
+
+        <!-- МОДАЛКА: РАНОБЭ OREGAIRU -->
+        <div class="animelib-modal-container" id="modal-ranobe-oregairu">
+            <button class="close-modal-x">&times;</button>
+            <div class="animelib-cover-blur" style="background-image: url('image/oregairu-novel.jpg');"></div>
+
+            <div class="modal-slider-track">
+                <div class="modal-slider-page">
+                    <div class="animelib-content-wrapper">
+                        <div class="animelib-left-meta">
+                            <img src="images/banners/oregairu-ranobe.jpg" class="animelib-main-poster" alt="Постер Новеллы">
+                            <div class="animelib-rating-box">⭐ 9.55 / 10</div>
+                            <a href="https://ranobelib.me/ru/book/6641--yahari-ore-no-seishun-rabukome-wa-machigatte-iru-novel" target="_blank" class="animelib-action-button ranobe-btn">
+                                Читать на RanobeLIB
+                                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3.5 2H10V8.5M10 2L2 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </a>
+                        </div>
+                        <div class="animelib-right-info">
+                            <h2 class="animelib-title" style="color: #fff;">Розовая пора моей школьной жизни сплошной обман (LN) (Новелла)</h2>
+                            <p class="animelib-jap-title">Yahari Ore no Seishun Rabukome wa Machigatte Iru. (Novel)</p>
+                            <div class="animelib-details-grid">
+                                <div><strong>Тип:</strong> Ранобэ / Новелла</div>
+                                <div><strong>Состояние:</strong> Завершён</div>
+                                <div><strong>Год выпуска:</strong> 2011</div>
+                                <div><strong>Глав:</strong> 202</div>
+                                <div><strong>Автор:</strong> Wataru Watari</div>
+                                <div><strong>Иллюстратор:</strong> Ponkan⑧</div>
+                            </div>
+                            <div class="animelib-genres-chips">
+                                <span>Драма</span><span>Комедия</span><span>Психология</span><span>Романтика</span><span>Школа</span>
+                            </div>
+                            <h3 class="animelib-sub-heading" style="color: var(--ranobe-blue);">Описание</h3>
+                            <p class="animelib-summary">Хачиман Хикигая — старшеклассник, который уже успел разочароваться в жизни. И по его мнению, он сейчас переживает самый худший период в жизни человека — юность. Иллюзию, сотканную из обмана, неудач и лицемерия. Однако, когда он описывает это в школьном сочинении, его учительницу не устраивает такое положение дел, и она отправляет его на "перевоспитание" в клуб волонтёров — место, участники которого помогают другим ученикам в решении их проблем.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-slider-page">
+                    <div class="animelib-content-wrapper">
+                        <div class="animelib-left-meta">
+                            <img src="images/banners/oregairu-ranobe-2.jpg" class="animelib-main-poster" alt="Постер Новеллы">
+                            <div class="animelib-rating-box">⭐ 9.64 / 10</div>
+                            <a href="https://ranobelib.me/ru/book/92881--yahari-ore-no-seishun-rabukome-wa-machigatteiru-shin" target="_blank" class="animelib-action-button ranobe-btn">
+                                Читать на RanobeLIB
+                                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3.5 2H10V8.5M10 2L2 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </a>
+                        </div>
+                        <div class="animelib-right-info">
+                            <h2 class="animelib-title" style="color: #fff;">Розовая пора моей школьной жизни сплошной обман - Продолжение (Новелла)</h2>
+                            <p class="animelib-jap-title">Yahari Ore no Seishun Rabukome wa Machigatteiru - Shin (Novel)</p>
+                            <div class="animelib-details-grid">
+                                <div><strong>Тип:</strong> Ранобэ / Новелла</div>
+                                <div><strong>Состояние:</strong> Завершён</div>
+                                <div><strong>Год выпуска:</strong> 2020</div>
+                                <div><strong>Глав:</strong> 35</div>
+                                <div><strong>Автор:</strong> Wataru Watari</div>
+                                <div><strong>Иллюстратор:</strong> Ponkan⑧</div>                                
+                            </div>
+                            <div class="animelib-genres-chips">
+                                <span>Психология</span><span>Романтика</span><span>Школа</span><span>Комедия</span>
+                            </div>
+                            <h3 class="animelib-sub-heading" style="color: var(--ranobe-blue);">Описание</h3>
+                            <p class="animelib-summary">Хачиман Хикигая, Юкино Юкиносита и Юи Юигахама пытаются выстроить новые искренние взаимоотношения в клубе помощников. Активную поддержку оказывают им новый глава клуба помощников Комачи Хикигая и президент школьного совета Ироха Ишшики.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                   
+            <div class="modal-seasons-dock-wrapper">
+                <nav class="modal-seasons-dock">
+                    <div class="season-slider-bg"></div>
+                    <button class="season-dock-item active" data-index="0">Основная история</button>
+                    <button class="season-dock-item" data-index="1">Продолжение</button>
+                </nav>
+            </div>
+        </div>
+
+        <!-- МОДАЛКА: MINECRAFT -->
+        <div class="animelib-modal-container" id="modal-game-minecraft">
+            <button class="close-modal-x">&times;</button>
+            <div class="animelib-cover-blur" style="background-image: url('image/minecraft.jpg');"></div>
+            <div class="animelib-content-wrapper">
+                <div class="animelib-left-meta">
+                    <img src="images/banners/minecraft.jpg" class="game-poster-mock" alt="Minecraft Постер">
+                    <div class="animelib-rating-box">Metacritic: 93/100</div>
+                    <div class="animelib-btn-group">
+                        <a href="https://www.minecraft.net" target="_blank" class="animelib-action-button">
+                            Официальный сайт
+                            <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3.5 2H10V8.5M10 2L2 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="animelib-right-info">
+                    <h2 class="animelib-title">Minecraft</h2>
+                    <p class="animelib-jap-title">Java Edition</p>
+                    <div class="animelib-details-grid">
+                        <div><strong>Жанр:</strong> Песочница</div>
+                        <div><strong>Разработчик:</strong> Mojang Studios</div>
+                        <div><strong>Год выпуска:</strong> 2011</div>
+                        <div><strong>Платформы:</strong> Windows, macOS, PlayStation, Xbox, Switch, Android, iOS</div>
+                    </div>
+                    <div class="animelib-genres-chips">
+                        <span>Выживание</span><span>Открытый мир</span><span>Песочница</span>
+                    </div>
+                    <h3 class="animelib-sub-heading">Описание</h3>
+                    <p class="animelib-summary">Трехмерная песочница с процедурно генерируемым миром и полной свободой действий. Проект выделяется глубокой системой крафта, возможностью создания сложных автоматизированных механизмов и развитым мультиплеерным сообществом.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- МОДАЛКА: RE8 -->
+        <div class="animelib-modal-container" id="modal-game-re8">
+            <button class="close-modal-x">&times;</button>
+            <div class="animelib-cover-blur" style="background-image: url('image/re8.jpg');"></div>
+            <div class="animelib-content-wrapper">
+                <div class="animelib-left-meta">
+                    <img src="images/banners/re8.jpg" class="game-poster-mock" alt="RE8 Постер">
+                    <div class="animelib-rating-box">Metacritic: 83/100</div>
+                    <div class="animelib-btn-group">
+                        <a href="https://store.steampowered.com/app/1196590/Resident_Evil_Village/" target="_blank" class="animelib-action-button"><i class="fab fa-steam"></i> Steam</a>
+                        <a href="https://store.epicgames.com/ru/p/resident-evil-village" target="_blank" class="animelib-action-button">
+                            <img src="https://unpkg.com/simple-icons@v9/icons/epicgames.svg" alt="Epic Games" style="width: 14px; height: 14px; padding: 0; margin: 0; filter: invert(1); display: inline-block; vertical-align: middle;"> Epic Games
+                        </a>
+                    </div>
+                </div>
+                <div class="animelib-right-info">
+                    <h2 class="animelib-title">Resident Evil Village</h2>
+                    <p class="animelib-jap-title">バイオハザード ヴィレッジ</p>
+                    <div class="animelib-details-grid">
+                        <div><strong>Жанр:</strong> Survival Horror</div>
+                        <div><strong>Разработчик:</strong> Capcom</div>
+                        <div><strong>Год выпуска:</strong> 2021</div>
+                        <div><strong>Платформы:</strong> Windows, macOS, PlayStation, Xbox, Switch, iOS</div>
+                    </div>
+                    <div class="animelib-genres-chips">
+                        <span>Horror</span><span>Action</span><span>First-Person</span>
+                    </div>
+                    <h3 class="animelib-sub-heading">Описание</h3>
+                    <p class="animelib-summary">Восьмая номерная часть серии, успешно развивающая механики survival-хоррора от первого лица. Игра выделяется проработанным менеджментом ресурсов, разнообразием локаций — от заснеженной деревни до викторианского замка — и колоритными антагонистами. Геймплей предлагает баланс между решением пространственных головоломок и напряженными боевыми столкновениями.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- МОДАЛКА: HONKAI STAR RAIL -->
+        <div class="animelib-modal-container" id="modal-game-hsr">
+            <button class="close-modal-x">&times;</button>
+            <div class="animelib-cover-blur" style="background-image: url('image/hsr.jpg');"></div>
+            <div class="animelib-content-wrapper">
+                <div class="animelib-left-meta">
+                    <img src="images/banners/hsr.jpg" class="game-poster-mock" alt="HSR Постер">
+                    <div class="animelib-rating-box">Metacritic: 80/100</div>
+                    <div class="animelib-btn-group">
+                        <a href="https://hsr.hoyoverse.com" target="_blank" class="animelib-action-button">Официальный сайт
+                            <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3.5 2H10V8.5M10 2L2 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                        <a href="https://store.epicgames.com/ru/p/honkai-star-rail" target="_blank" class="animelib-action-button">
+                            <img src="https://unpkg.com/simple-icons@v9/icons/epicgames.svg" alt="Epic Games" style="width: 14px; height: 14px; padding: 0; margin: 0; filter: invert(1); display: inline-block; vertical-align: middle;"> Epic Games
+                        </a>
+                    </div>
+                </div>
+                <div class="animelib-right-info">
+                    <h2 class="animelib-title">Honkai: Star Rail</h2>
+                    <p class="animelib-jap-title">崩壊：スターレイル</p>
+                    <div class="animelib-details-grid">
+                        <div><strong>Жанр:</strong> Пошаговая RPG</div>
+                        <div><strong>Разработчик:</strong> HoYoverse</div>
+                        <div><strong>Год выпуска:</strong> 2023</div>
+                        <div><strong>Платформы:</strong> Windows, macOS, PS5, Android, iOS</div>
+                    </div>
+                    <div class="animelib-genres-chips">
+                        <span>Космическое фэнтези</span><span>JRPG</span><span>Пошаговая</span><span>Аниме</span><span>Гача</span>
+                    </div>
+                    <h3 class="animelib-sub-heading">Описание</h3>
+                    <p class="animelib-summary">Масштабное космическое фэнтези от HoYoverse. Путешествуйте между планетами, собирайте команду харизматичных героев и побеждайте врагов в глубоких пошаговых битвах. Узнайте, какую тайну скрывает Стелларон внутри вас, и определите судьбу галактики!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- МОДАЛКА: GTA V -->
+        <div class="animelib-modal-container" id="modal-game-gtav">
+            <button class="close-modal-x">&times;</button>
+            <div class="animelib-cover-blur" style="background-image: url('image/gtav.jpg');"></div>
+            <div class="animelib-content-wrapper">
+                <div class="animelib-left-meta">
+                    <img src="images/banners/gtav.jpg" class="game-poster-mock" alt="GTA V Постер">
+                    <div class="animelib-rating-box">Metacritic: 97/100</div>
+                    <div class="animelib-btn-group">
+                        <a href="https://store.steampowered.com/app/3240220/Grand_Theft_Auto_V_Enhanced/" target="_blank" class="animelib-action-button"><i class="fab fa-steam"></i> Steam</a>
+                        <a href="https://store.epicgames.com/ru/p/grand-theft-auto-v" target="_blank" class="animelib-action-button">
+                            <img src="https://unpkg.com/simple-icons@v9/icons/epicgames.svg" alt="Epic Games" style="width: 14px; height: 14px; padding: 0; margin: 0; filter: invert(1); display: inline-block; vertical-align: middle;"> Epic Games
+                        </a>
+                    </div>
+                </div>
+                <div class="animelib-right-info">
+                    <h2 class="animelib-title">Grand Theft Auto V</h2>
+                    <p class="animelib-jap-title">GTA V</p>
+                    <div class="animelib-details-grid">
+                        <div><strong>Жанр:</strong> Экшен / Открытый мир</div>
+                        <div><strong>Разработчик:</strong> Rockstar North</div>
+                        <div><strong>Год выпуска:</strong> 2013 / 2015 (PC)</div>
+                        <div><strong>Платформы:</strong> Windows, PlayStation, Xbox</div>
+                    </div>
+                    <div class="animelib-genres-chips">
+                        <span>Открытый мир</span><span>Экшен</span><span>Шутер</span>
+                    </div>
+                    <h3 class="animelib-sub-heading">Описание</h3>
+                    <p class="animelib-summary">Легендарный криминальный симулятор Лос-Сантоса. Качественная сюжетная кампания и бесконечный мультиплеерный режим GTA Online с ограблениями, бизнесом и сессиями с друзьями.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- МОДАЛКА: STRAY -->
+        <div class="animelib-modal-container" id="modal-game-stray">
+            <button class="close-modal-x">&times;</button>
+            <div class="animelib-cover-blur" style="background-image: url('image/stray.jpg');"></div>
+            <div class="animelib-content-wrapper">
+                <div class="animelib-left-meta">
+                    <img src="images/banners/stray.jpg" class="game-poster-mock" alt="Stray Постер">
+                    <div class="animelib-rating-box">Metacritic: 83/100</div>
+                    <div class="animelib-btn-group">
+                        <a href="https://store.steampowered.com/app/1332010/Stray/" target="_blank" class="animelib-action-button"><i class="fab fa-steam"></i> Steam</a>
+                        <a href="https://store.epicgames.com/p/stray-42d658" target="_blank" class="animelib-action-button">
+                            <img src="https://unpkg.com/simple-icons@v9/icons/epicgames.svg" alt="Epic Games" style="width: 14px; height: 14px; padding: 0; margin: 0; filter: invert(1); display: inline-block; vertical-align: middle;"> Epic Games
+                        </a>
+                    </div>
+                </div>
+                <div class="animelib-right-info">
+                    <h2 class="animelib-title">Stray</h2>
+                    <p class="animelib-jap-title">Приключения бродячего кота</p>
+                    <div class="animelib-details-grid">
+                        <div><strong>Жанр:</strong> Приключение / Инди</div>
+                        <div><strong>Разработчик:</strong> BlueTwelve Studio</div>
+                        <div><strong>Год выпуска:</strong> 2022</div>
+                        <div><strong>Платформы:</strong> Windows, macOS, PlayStation, Xbox, Switch</div>
+                    </div>
+                    <div class="animelib-genres-chips">
+                        <span>Приключение</span><span>Квест</span><span>Платформер</span>
+                    </div>
+                    <h3 class="animelib-sub-heading">Описание</h3>
+                    <p class="animelib-summary">Потерявшемуся и одинокому бродячему коту предстоит разпутать древнюю тайну и вырваться из давно заброшенного кибергорода с помощью маленького летающего дрона B-12.</p>
+                </div>
+            </div>
+        </div>
+
+    <!-- СКРИПТОВАЯ ЧАСТЬ -->
     <script>
         document.querySelectorAll('.discord-copy-btn').forEach(button => {
             button.addEventListener('click', function(e) {
                 e.preventDefault();
                 const textToCopy = this.getAttribute('data-clipboard');
-                
                 if (!textToCopy) return;
 
                 navigator.clipboard.writeText(textToCopy).then(() => {
                     const tooltip = document.createElement('div');
                     tooltip.className = 'clipboard-tooltip';
-                    tooltip.innerText = 'UID  cкопирован!';
+                    tooltip.innerText = 'Скопировано!';
                     document.body.appendChild(tooltip);
-                    
                     tooltip.style.left = `${e.pageX}px`;
                     tooltip.style.top = `${e.pageY - 30}px`;
-                    
                     setTimeout(() => {
                         tooltip.classList.add('fade-out');
                         setTimeout(() => tooltip.remove(), 300);
                     }, 1000);
-                }).catch(err => {
-                    console.error('Не удалось скопировать: ', err);
-                });
+                }).catch(err => console.error(err));
             });
         });
+
+        const dockItems = document.querySelectorAll('.dock-item');
+        const screens = document.querySelectorAll('.screen-content');
+        const slider = document.querySelector('.dock-bg-slider');
+
+        function moveSlider(activeItem) {
+            if (!activeItem || !slider) return;
+            slider.style.width = `${activeItem.offsetWidth}px`;
+            slider.style.left = `${activeItem.offsetLeft}px`;
+        }
+
+        function activateScreen(screenId) {
+            const targetItem = document.querySelector(`.dock-item[data-screen="${screenId}"]`);
+            const targetScreen = document.getElementById(screenId);
+
+            if (!targetItem || !targetScreen) return;
+
+            dockItems.forEach(i => i.classList.remove('active'));
+            targetItem.classList.add('active');
+            moveSlider(targetItem);
+
+            screens.forEach(screen => screen.classList.remove('active'));
+            targetScreen.classList.add('active');
+
+            localStorage.setItem('lastActiveScreen', screenId);
+        }
+
+        window.addEventListener('load', () => {
+            const savedScreen = localStorage.getItem('lastActiveScreen') || 'screen-main';
+            activateScreen(savedScreen);
+            setTimeout(() => {
+                const activeItem = document.querySelector('.dock-item.active');
+                if(activeItem) moveSlider(activeItem);
+            }, 50);
+        });
+
+        dockItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const targetScreen = item.getAttribute('data-screen');
+                activateScreen(targetScreen);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+
+        const globalModalOverlay = document.getElementById('globalModalOverlay');
+        
+        function moveSeasonSlider(activeBtn, modalContainer) {
+            const seasonSlider = modalContainer.querySelector('.season-slider-bg');
+            if (!activeBtn || !seasonSlider) return;
+            seasonSlider.style.width = `${activeBtn.offsetWidth}px`;
+            seasonSlider.style.left = `${activeBtn.offsetLeft}px`;
+        }
+
+        document.querySelectorAll('.open-modal-trigger').forEach(trigger => {
+            trigger.addEventListener('click', (e) => {
+                e.preventDefault();
+                const modalId = trigger.getAttribute('data-modal');
+                const targetModal = document.getElementById(modalId);
+                
+                if (targetModal) {
+                    globalModalOverlay.classList.add('open');
+                    document.querySelectorAll('.animelib-modal-container, .profile-small-modal').forEach(m => m.classList.remove('active'));
+                    targetModal.classList.add('active');
+                    
+                    const firstSeasonBtn = targetModal.querySelector('.season-dock-item');
+                    if (firstSeasonBtn) {
+                        targetModal.querySelectorAll('.season-dock-item').forEach(b => b.classList.remove('active'));
+                        firstSeasonBtn.classList.add('active');
+                        moveSeasonSlider(firstSeasonBtn, targetModal);
+                        
+                        const track = targetModal.querySelector('.modal-slider-track');
+                        if (track) track.style.transform = `translateX(0%)`;
+                    }
+                }
+            });
+        });
+
+        document.querySelectorAll('.season-dock-item').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const modalContainer = this.closest('.animelib-modal-container');
+                const pageIndex = parseInt(this.getAttribute('data-index'));
+                const track = modalContainer.querySelector('.modal-slider-track');
+                
+                modalContainer.querySelectorAll('.season-dock-item').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                moveSeasonSlider(this, modalContainer);
+                
+                if (track) {
+                    track.style.transform = `translateX(${pageIndex * -100}%)`;
+                }
+            });
+        });
+
+        function closeGlobalModal() {
+            globalModalOverlay.classList.remove('open');
+        }
+
+        globalModalOverlay.addEventListener('click', (e) => {
+            if (e.target === globalModalOverlay || e.target.classList.contains('close-modal-x') || e.target.classList.contains('close-modal-btn')) {
+                closeGlobalModal();
+            }
+        });
+
+        window.addEventListener('resize', () => {
+            const activeItem = document.querySelector('.dock-item.active');
+            if(activeItem) moveSlider(activeItem);
+            
+            document.querySelectorAll('.animelib-modal-container').forEach(modal => {
+                const activeSeasonBtn = modal.querySelector('.season-dock-item.active');
+                if(activeSeasonBtn) moveSeasonSlider(activeSeasonBtn, modal);
+            });
+        });
+
+        function checkBirthday() {
+            const today = new Date();
+            if (today.getDate() === 19 && today.getMonth() === 1) {
+                const avatarBlock = document.getElementById('avatarBlock');
+                if (avatarBlock) avatarBlock.classList.add('birthday-mode');
+                const greeting = document.getElementById('greeting');
+                if (greeting) greeting.innerText = "> С Днём Рождения меня! 🎂";
+                const bdaySubtitle = document.getElementById('bdaySubtitle');
+                if (bdaySubtitle) bdaySubtitle.innerText = "✦ Сегодня официальный день отдыха и праздника!";
+            }
+        }
+        window.addEventListener('DOMContentLoaded', checkBirthday);
+
+        function copyEpicHandle() {
+            const handleText = document.getElementById("epicHandle").innerText;
+            navigator.clipboard.writeText(handleText).then(() => {
+                const originalText = handleText;
+                const handleElement = document.getElementById("epicHandle");
+                handleElement.innerText = "Скопировано!";
+                handleElement.style.color = "#00ff66"; // подсветится твоим зеленым
+                setTimeout(() => {
+                    handleElement.innerText = originalText;
+                    handleElement.style.color = "";
+                }, 1000);
+            });
+        }
+
+        function copyXboxHandle() {
+            const handleText = document.getElementById("xboxHandle").innerText;
+            navigator.clipboard.writeText(handleText).then(() => {
+                const originalText = handleText;
+                const handleElement = document.getElementById("xboxHandle");
+                handleElement.innerText = "Скопировано!";
+                handleElement.style.color = "#00ff66";
+                setTimeout(() => {
+                    handleElement.innerText = originalText;
+                    handleElement.style.color = "";
+                }, 1000);
+            });
+        }
     </script>
 </body>
 </html>

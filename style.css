@@ -1,4 +1,3 @@
-/* Импорт шрифта */
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
 
 :root {
@@ -8,399 +7,371 @@
     --text-muted: #9ca3af;
     --bocchi-pink: #ff69b4;
     --ryo-blue: #00bfff;
+    --ranobe-blue: #0077ff;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html, body {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden; /* Запрещаем горизонтальный скролл на корневом уровне */
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 100%; max-width: 100%; overflow-x: hidden; }
 
 body {
     font-family: 'JetBrains Mono', monospace;
     background-color: #0d0e12;
     color: var(--text-main);
     min-height: 100vh;
-    overflow-y: auto;
-    position: relative;
+    padding-bottom: 100px;
 }
 
-/* Главная вертикальная обертка */
-.page-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    max-width: 100%;
-    padding: clamp(20px, 5vw, 60px) 15px; /* Оптимальные безопасные отступы по бокам */
-    gap: clamp(30px, 6vw, 50px);
-    overflow-x: hidden;
-}
-
-/* Задний фон со свечением + Оптимизация против чёрных артефактов */
 body::before, body::after {
-    content: '';
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(100px);
-    z-index: -1;
-    will-change: transform;
-    transform: translateZ(0);
-    backface-visibility: hidden;
+    content: ''; position: absolute; border-radius: 50%; filter: blur(100px); z-index: -1;
+    will-change: transform; transform: translateZ(0); backface-visibility: hidden;
 }
-body::before {
-    width: 450px;
-    height: 450px;
-    background: var(--bocchi-pink);
-    opacity: 0.25;
-    top: 5%;
-    left: 10%;
-    animation: float 8s ease-in-out infinite alternate;
-}
-body::after {
-    width: 500px;
-    height: 500px;
-    background: var(--ryo-blue);
-    opacity: 0.20;
-    top: 35%;
-    right: 10%;
-    animation: float 10s ease-in-out infinite alternate-reverse;
+body::before { width: 450px; height: 450px; background: var(--bocchi-pink); opacity: 0.25; top: 5%; left: 10%; animation: float 8s ease-in-out infinite alternate; }
+body::after { width: 500px; height: 500px; background: var(--ryo-blue); opacity: 0.20; top: 35%; right: 10%; animation: float 10s ease-in-out infinite alternate-reverse; }
+
+.page-wrapper {
+    display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 100%;
+    padding: clamp(20px, 5vw, 60px) 15px;
 }
 
-/* --- ВЕРХНИЙ БЛОК (Профиль) --- */
-.main-container {
-    display: flex;
-    justify-content: center;
-    align-items: stretch;
-    width: 100%;
-    max-width: 850px;
-    gap: 20px;
-    flex-wrap: wrap;
+.screen-content { display: none; width: 100%; max-width: 850px; }
+.screen-content.active { display: block; animation: fadeInScreen 0.4s ease-out forwards; }
+
+@keyframes fadeInScreen {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-.sidebar {
-    width: 100%;
-    min-width: 240px;
-    flex: 1 1 240px;
-    background-size: cover;
-    background-position: center 15%; /* Смещаем картинку, чтобы лицо Хитори всегда было в кадре */
-    border-radius: 24px;
-    border: 1px solid var(--glass-border);
-    overflow: hidden;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-}
+.large-container { width: 100%; }
 
-.sidebar-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    height: 100%;
-    min-height: 200px;
-    padding: 30px 20px;
-    background: rgba(0, 0, 0, 0.45);
-    gap: 20px;
-}
+/* ПРОФИЛЬ */
+.main-container { display: flex; justify-content: center; align-items: stretch; width: 100%; gap: 20px; flex-wrap: wrap; }
+.sidebar { width: 100%; min-width: 240px; flex: 1 1 240px; background-size: cover; background-position: center 15%; border-radius: 24px; border: 1px solid var(--glass-border); overflow: hidden; box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3); }
+.sidebar-content { display: flex; flex-direction: column; justify-content: space-between; align-items: center; height: 100%; min-height: 200px; padding: 30px 20px; background: rgba(0, 0, 0, 0.45); gap: 20px; }
 
-.avatar-container {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    border: 3px solid var(--bocchi-pink);
-    overflow: hidden;
-    box-shadow: 0 0 15px rgba(255, 105, 180, 0.4);
-    transition: transform 0.3s ease;
-}
+.avatar-container { width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--bocchi-pink); overflow: hidden; box-shadow: 0 0 15px rgba(255, 105, 180, 0.4); transition: transform 0.3s ease; }
 .avatar-container:hover { transform: scale(1.08); }
 .avatar-img { width: 100%; height: 100%; object-fit: cover; }
 
+.avatar-container.birthday-mode { animation: rainbow-border 3s linear infinite; box-shadow: 0 0 25px rgba(255, 105, 180, 0.8); }
+@keyframes rainbow-border { 0% { border-color: var(--bocchi-pink); } 33% { border-color: var(--ryo-blue); } 66% { border-color: #2ecc71; } 100% { border-color: var(--bocchi-pink); } }
+
 .social-links { display: flex; gap: 18px; }
-.social-icon { font-size: 1.4rem; color: var(--text-muted); text-decoration: none; transition: color 0.3s ease, transform 0.2s ease; position: relative; }
+.social-icon { font-size: 1.4rem; color: var(--text-muted); text-decoration: none; transition: color 0.3s ease, transform 0.2s ease; }
 .social-icon:hover { color: #fff; transform: translateY(-2px); }
 
-/* Оптимизация рендеринга блура против бага с квадратами */
-.profile-card {
-    background: var(--glass-bg);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid var(--glass-border);
-    border-radius: 24px;
-    padding: clamp(20px, 4vw, 35px);
-    flex: 1 1 300px;
-    width: 100%;
-    max-width: 550px;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-    
-    display: flex;
-    flex-direction: column;
-    
-    will-change: transform;
-    transform: translateZ(0);
-    backface-visibility: hidden;
-}
-
-header h1 {
-    font-size: clamp(1.3rem, 4vw, 1.8rem);
-    margin-bottom: 6px;
-    background: linear-gradient(45deg, var(--bocchi-pink), var(--ryo-blue));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
+.profile-card { background: var(--glass-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--glass-border); border-radius: 24px; padding: clamp(20px, 4vw, 35px); flex: 1 1 300px; max-width: 550px; box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3); display: flex; flex-direction: column; }
+header h1 { font-size: clamp(1.3rem, 4vw, 1.8rem); margin-bottom: 6px; background: linear-gradient(45deg, var(--bocchi-pink), var(--ryo-blue)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
 .subtitle { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px; }
+.bio-text { color: #d1d5db; line-height: 1.6; font-size: 0.95rem; margin-bottom: 25px; }
 
-section { margin-bottom: 20px; }
-section h2 { font-size: 1.1rem; margin-bottom: 10px; color: var(--bocchi-pink); border-bottom: 1px solid var(--glass-border); padding-bottom: 4px; display: inline-block; }
-section p { color: #d1d5db; line-height: 1.5; font-size: 0.9rem; }
+.personal-info-grid { display: flex; flex-direction: column; gap: 14px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); padding: 16px; border-radius: 16px; }
+.info-item { display: flex; align-items: center; gap: 15px; }
+.info-icon { font-size: 1.3rem; background: rgba(255, 255, 255, 0.05); width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; border-radius: 10px; }
+.info-text { display: flex; flex-direction: column; }
+.info-label { font-size: 0.75rem; color: var(--text-muted); }
+.info-value { font-size: 0.9rem; color: #fff; font-weight: bold; }
 
-/* Стек технологий автоматически прижимается к низу карточки */
-.tech-stack {
-    margin-top: auto;
-    padding-top: 15px;
-}
-.tech-stack ul { list-style: none; display: flex; gap: 10px; flex-wrap: wrap; }
-.tech-stack li { display: flex; align-items: center; background: rgba(255, 255, 255, 0.06); border: 1px solid var(--glass-border); padding: 6px 14px; border-radius: 14px; font-size: 0.85rem; transition: all 0.2s ease; }
-.tech-stack li:hover {
-    background: rgba(255, 105, 180, 0.15);
-    border-color: var(--bocchi-pink);
-    transform: scale(1.03);
-    box-shadow: 0 4px 12px rgba(255, 105, 180, 0.2);
-}
-.tech-icon { margin-right: 6px; }
+.tech-stack { margin-top: 25px; }
+.tech-stack h2 { color: var(--bocchi-pink); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; margin-bottom: 12px; }
+.tech-stack ul { list-style: none; display: flex; gap: 10px; }
+.tech-stack li { display: flex; align-items: center; background: rgba(255, 255, 255, 0.04); border: 1px solid var(--glass-border); padding: 8px 16px; border-radius: 14px; font-size: 0.85rem; transition: all 0.3s ease; }
+.tech-stack li:hover { background: rgba(0, 191, 255, 0.1); border-color: var(--ryo-blue); box-shadow: 0 4px 15px rgba(0, 191, 255, 0.2); transform: translateY(-2px); color: #fff; }
+.tech-icon { margin-right: 8px; transition: transform 0.3s ease; }
+.tech-stack li:hover .tech-icon { transform: scale(1.15) rotate(5deg); color: var(--ryo-blue); }
 
-/* --- НИЖНИЙ БЛОК: СЕТКА ПРОЕКТОВ --- */
-.projects-section {
-    width: 100%;
-    max-width: 850px; 
-}
+/* ПЛИТКИ И ХОВЕРЫ СВЕЧЕНИЙ */
+.tile-animelib, .tile-ranobelib, .tile-minecraft, .tile-re8, .tile-hsr, .tile-gtav, .tile-stray { transition: margin 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease; }
+.tile-animelib:hover, .tile-ranobelib:hover, .tile-minecraft:hover, .tile-re8:hover, .tile-hsr:hover, .tile-gtav:hover, .tile-stray:hover { margin-top: -8px; margin-bottom: 16px; }
 
-.section-title {
-    font-size: 1.3rem;
-    color: #fff;
-    margin-bottom: 25px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
+.tile-animelib:hover { border-color: #8b5cf6; box-shadow: 0 15px 30px rgba(139, 92, 246, 0.25); }
+.tile-ranobelib:hover { border-color: var(--ranobe-blue); box-shadow: 0 15px 30px rgba(0, 119, 255, 0.3); }
+.tile-minecraft:hover { border-color: #2ecc71; box-shadow: 0 15px 30px rgba(46, 204, 113, 0.25); }
+.tile-re8:hover { border-color: #e74c3c; box-shadow: 0 15px 30px rgba(231, 76, 60, 0.25); }
+.tile-hsr:hover { border-color: #f48fb1; box-shadow: 0 15px 30px rgba(169, 134, 162, 0.25); }
+.tile-gtav:hover { border-color: #1b5e20; box-shadow: 0 15px 30px rgba(112, 159, 103, 0.311); }
+.tile-stray:hover { border-color: #e0f7fa; box-shadow: 0 15px 30px rgba(171, 167, 164, 0.25); }
+.section-title { font-size: 1.2rem; color: #fff; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 1px; }
+.projects-grid { display: flex; flex-wrap: wrap; gap: 20px; width: 100%; justify-content: flex-start; }
 
-.projects-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    width: 100%;
-    justify-content: flex-start;
-}
-
-/* Оптимизация рендеринга блура против бага с квадратами */
 .project-tile {
-    background: var(--glass-bg);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid var(--glass-border);
-    border-radius: 24px;
-    padding: 25px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    
-    flex: 1 1 250px;
-    width: 100%;
-    max-width: 270px;
-    height: 420px;
-    
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
-    margin-top: 0;
-    margin-bottom: 8px;
-    transition: margin 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-    
-    will-change: transform;
-    transform: translateZ(0);
-    backface-visibility: hidden;
+    background: var(--glass-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--glass-border); border-radius: 24px; padding: 25px;
+    display: flex; flex-direction: column; justify-content: space-between; flex: 1 1 250px; width: 100%; max-width: 270px; height: 420px; box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2); margin-bottom: 8px; transition: margin 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
-
-.tile-header { 
-    display: flex; 
-    align-items: center; 
-    gap: 15px; 
-    margin-bottom: 15px;
-    flex-shrink: 0;
-}
-
-.project-logo-wrapper {
-    width: 48px !important;
-    height: 48px !important;
-    min-width: 48px !important;
-    min-height: 48px !important;
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid var(--glass-border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-}
-
-.project-logo { 
-    width: 100% !important; 
-    height: 100% !important; 
-    object-fit: cover !important; 
-}
-
+.tile-header { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; flex-shrink: 0; }
+.project-logo-wrapper { width: 48px; height: 48px; min-width: 48px; min-height: 48px; border-radius: 12px; background: rgba(255, 255, 255, 0.08); border: 1px solid var(--glass-border); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.project-logo { width: 100%; height: 100%; object-fit: cover; }
 .tile-title h3 { font-size: 1.1rem; color: #fff; line-height: 1.2; }
 .tile-title p { font-size: 0.75rem; color: var(--text-muted); }
-
-.tile-desc {
-    font-size: 0.8rem;
-    color: #d1d5db;
-    line-height: 1.5;
-    margin-bottom: 15px;
-    flex-grow: 1;
-    overflow-y: auto; 
-    padding-right: 5px; 
-}
-
-.tile-desc::-webkit-scrollbar { width: 4px; }
-.tile-desc::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.01); }
-.tile-desc::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.15); border-radius: 10px; }
-.tile-desc::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.3); }
-
-.tile-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    padding-top: 15px;
-    flex-shrink: 0;
-}
-
+.tile-desc { font-size: 0.8rem; color: #d1d5db; line-height: 1.5; margin-bottom: 15px; flex-grow: 1; overflow-y: auto; padding-right: 5px; }
+.tile-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 15px; flex-shrink: 0; }
 .project-socials { display: flex; gap: 14px; }
-.project-socials a { color: var(--text-muted); font-size: 1.2rem; text-decoration: none; transition: color 0.2s ease, transform 0.2s ease; }
-.project-socials a:hover { color: #fff; transform: translateY(-2px); }
+.project-socials a { color: var(--text-muted); font-size: 1.2rem; text-decoration: none; transition: color 0.2s ease; }
+.project-socials a:hover { color: #fff; }
+.tile-btn { color: var(--text-main); text-decoration: none; font-size: 0.85rem; display: flex; align-items: center; gap: 6px; }
 
-.tile-btn {
-    color: var(--text-main);
-    text-decoration: none;
-    font-size: 0.85rem;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    transition: gap 0.2s ease, color 0.2s ease;
-}
-.tile-btn i { font-size: 0.75rem; transition: transform 0.2s ease; }
-
-/* --- ХОВЕРЫ ДЛЯ КАРТОЧЕК --- */
 .tile-travevill:hover { margin-top: -8px; margin-bottom: 16px; border-color: var(--bocchi-pink); box-shadow: 0 15px 30px rgba(255, 105, 180, 0.25); }
-.tile-travevill:hover .tile-btn { color: var(--bocchi-pink); }
-.tile-travevill:hover .tile-btn i { transform: translateX(3px); }
-
 .tile-polityevo:hover { margin-top: -8px; margin-bottom: 16px; border-color: var(--ryo-blue); box-shadow: 0 15px 30px rgba(0, 191, 255, 0.25); }
-.tile-polityevo:hover .tile-btn { color: var(--ryo-blue); }
-.tile-polityevo:hover .tile-btn i { transform: translateX(3px); }
-
 .tile-discord-server:hover { margin-top: -8px; margin-bottom: 16px; border-color: #5865F2; box-shadow: 0 15px 30px rgba(88, 101, 242, 0.3); }
-.tile-discord-server:hover .tile-btn { color: #5865F2; }
-.tile-discord-server:hover .tile-btn i { transform: translateX(3px); }
-
 .tile-blitzstats:hover { margin-top: -8px; margin-bottom: 16px; border-color: #2ecc71; box-shadow: 0 15px 30px rgba(46, 204, 113, 0.25); }
-.tile-blitzstats:hover .tile-btn { color: #2ecc71; }
-.tile-blitzstats:hover .tile-btn i { transform: translateX(3px); }
 
-@keyframes float {
-    0% { transform: translate(0, 0) scale(1); }
-    100% { transform: translate(20px, 15px) scale(1.05); }
+.profiles-large-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; margin-top: 10px; }
+.profile-card-large { display: flex; align-items: center; gap: 15px; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 20px; border-radius: 20px; text-decoration: none; color: #fff; transition: all 0.25s ease; }
+.p-card-icon { font-size: 2rem; color: var(--text-muted); display: flex; align-items: center; }
+.p-card-info h3 { font-size: 1rem; margin-bottom: 2px; }
+.p-card-info p { font-size: 0.75rem; color: var(--text-muted); }
+.epic-svg-icon { width: 32px; height: 32px; filter: invert(70%); transition: filter 0.25s ease; }
+
+.profile-card-large.steam:hover { border-color: var(--ryo-blue); background: rgba(0, 191, 255, 0.08); box-shadow: 0 8px 24px rgba(0, 191, 255, 0.2); transform: translateY(-3px); }
+.profile-card-large.steam:hover .p-card-icon { color: var(--ryo-blue); }
+.profile-card-large.epic:hover { border-color: #fff; background: rgba(255, 255, 255, 0.08); box-shadow: 0 8px 24px rgba(255, 255, 255, 0.15); transform: translateY(-3px); }
+.profile-card-large.epic:hover .epic-svg-icon { filter: invert(100%); }
+.profile-card-large.xbox:hover { border-color: #107c10; background: rgba(16, 124, 16, 0.1); box-shadow: 0 8px 24px rgba(16, 124, 16, 0.2); transform: translateY(-3px); }
+.profile-card-large.xbox:hover .p-card-icon { color: #107c10; }
+.profile-card-large.reddit:hover { border-color: #ff4500; background: rgba(255, 69, 0, 0.1); box-shadow: 0 8px 24px rgba(255, 69, 0, 0.2); transform: translateY(-3px); }
+.profile-card-large.reddit:hover .p-card-icon { color: #ff4500; }
+
+/* ГЛАВНЫЙ НАВИГАЦИОННЫЙ ДОК */
+.tg-dock-nav {
+    position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%); background: rgba(15, 17, 23, 0.65);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 6px; border-radius: 30px; display: flex; gap: 4px; z-index: 10000;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255,255,255,0.1);
+}
+.dock-bg-slider {
+    position: absolute; height: calc(100% - 12px); top: 6px; left: 6px;
+    background: linear-gradient(135deg, rgba(255, 105, 180, 0.2), rgba(0, 191, 255, 0.2));
+    border: 1px solid rgba(255, 105, 180, 0.3); border-radius: 24px; z-index: 1;
+    transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1); pointer-events: none;
+}
+.dock-item {
+    background: transparent; border: none; position: relative; z-index: 2; padding: 10px 22px;
+    border-radius: 24px; color: var(--text-muted); font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: color 0.3s ease;
+}
+.dock-item i { font-size: 0.95rem; }
+.dock-item:hover { color: #fff; }
+.dock-item.active { color: #fff; font-weight: bold; }
+
+/* АРХИТЕКТУРА МОДАЛЬНЫХ ОКН */
+.modal-root-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(4, 5, 7, 0.6); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none; z-index: 999999;
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.modal-root-overlay.open { opacity: 1; pointer-events: auto; }
+
+/* Карточка тайтла и игры — Истинное прозрачное стекло */
+.animelib-modal-container {
+    position: relative; display: none; width: 92%; max-width: 920px; height: 80vh;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(35px) saturate(160%); -webkit-backdrop-filter: blur(35px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 24px; overflow: hidden; 
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5), 
+                inset 0 1px 1px rgba(255, 255, 255, 0.15),
+                0 0 40px rgba(0, 191, 255, 0.05);
+    z-index: 2;
+    animation: modalScaleUp 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* --- ВСПЛЫВАЮЩЕЕ УВЕДОМЛЕНИЕ (КЛИПБОРД ТУЛТИП) --- */
-.clipboard-tooltip {
-    position: absolute;
-    background: rgba(88, 101, 242, 0.95); /* Серверный цвет Discord */
-    color: #fff;
-    padding: 6px 14px;
-    border-radius: 8px;
-    font-size: 0.75rem;
-    font-weight: bold;
-    pointer-events: none;
-    z-index: 99999;
-    box-shadow: 0 4px 15px rgba(88, 101, 242, 0.4);
-    transform: translate(-50%, -100%);
-    animation: tooltip-bounce 0.2s ease-out forwards;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    font-family: 'JetBrains Mono', monospace;
+.profile-small-modal {
+    position: relative; display: none; width: 90%; max-width: 400px;
+    background: rgba(20, 22, 28, 0.6); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 24px; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    animation: modalScaleUp 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.modal-root-overlay.open .animelib-modal-container.active,
+.modal-root-overlay.open .profile-small-modal.active { display: block; }
+
+@keyframes modalScaleUp { from { transform: scale(0.96); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+.close-modal-x { position: absolute; top: 20px; right: 24px; font-size: 1.6rem; background: none; border: none; color: var(--text-muted); cursor: pointer; z-index: 99; transition: color 0.2s; }
+.close-modal-x:hover { color: #fff; }
+
+/* Задний фон-блюр */
+.animelib-cover-blur { 
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+    background-size: cover; background-position: center; 
+    filter: blur(45px) brightness(0.75) contrast(1.1);
+    opacity: 0.55; 
+    z-index: 1; 
+    pointer-events: none; 
+    transform: scale(1.08);
 }
 
-.clipboard-tooltip.fade-out {
-    opacity: 0;
-    transform: translate(-50%, -130%);
-    transition: opacity 0.3s ease, transform 0.3s ease;
+.animelib-cover-blur::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(255, 105, 180, 0.15), rgba(0, 191, 255, 0.15));
+    mix-blend-mode: screen;
 }
 
-@keyframes tooltip-bounce {
-    0% { transform: translate(-50%, -70%); opacity: 0; }
-    100% { transform: translate(-50%, -100%); opacity: 1; }
+/* ГОРИЗОНТАЛЬНЫЙ СЛАЙДЕР СЕЗОНОВ */
+.modal-slider-track {
+    display: flex; width: 100%; height: 100%;
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1); will-change: transform;
+    position: relative; z-index: 3;
+}
+.modal-slider-page { width: 100%; height: 100%; flex-shrink: 0; }
+
+.animelib-content-wrapper { position: relative; display: flex; gap: 35px; height: 100%; padding: 40px; box-sizing: border-box; overflow-y: auto; z-index: 5; padding-top: 45px; }
+.animelib-left-meta { width: 210px; flex-shrink: 0; display: flex; flex-direction: column; gap: 15px; position: relative; z-index: 10; }
+.animelib-main-poster, .game-poster-mock { width: 100%; aspect-ratio: 3/4; border-radius: 14px; border: 1px solid rgba(255,255,255,0.15); object-fit: cover; box-shadow: 0 12px 30px rgba(0,0,0,0.5); }
+.animelib-rating-box { background: rgba(255, 255, 255, 0.05); text-align: center; padding: 12px; border-radius: 12px; font-size: 0.85rem; color: var(--text-main); border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(5px); }
+.votes-count { color: var(--text-muted); font-size: 0.75rem; }
+
+/* УНИФИЦИРОВАННАЯ КНОПКА КЛИКА */
+.animelib-btn-group { display: flex; flex-direction: column; gap: 8px; width: 100%; }
+.animelib-action-button {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    background: rgba(255, 255, 255, 0.05); color: #fff; text-decoration: none !important; 
+    padding: 11px 14px; text-align: center; border-radius: 12px; font-size: 0.8rem; font-weight: 700;
+    border: 1px solid rgba(255, 255, 255, 0.12); cursor: pointer; 
+    position: relative; z-index: 15; pointer-events: auto !important;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+.animelib-action-button svg { opacity: 0.8; transition: transform 0.2s ease; }
+.animelib-action-button:hover { 
+    background: rgba(0, 191, 255, 0.12); border-color: var(--ryo-blue); 
+    box-shadow: 0 0 25px rgba(0, 191, 255, 0.35); transform: translateY(-2px);
+}
+.animelib-action-button.ranobe-btn:hover {
+    background: rgba(0, 119, 255, 0.15); border-color: var(--ranobe-blue);
+    box-shadow: 0 0 25px rgba(0, 119, 255, 0.4);
+}
+.animelib-action-button:hover svg { transform: translate(1.5px, -1.5px); }
+
+.animelib-right-info { flex-grow: 1; color: #fff; position: relative; z-index: 10; }
+.animelib-title { font-size: 1.7rem; margin: 0 0 4px 0; font-weight: 700; color: #fff; letter-spacing: -0.5px; }
+.animelib-jap-title { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px; }
+
+/* Рамка характеристик */
+.animelib-details-grid { 
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; 
+    background: rgba(255, 255, 255, 0.03); padding: 18px; border-radius: 16px; 
+    border: 1px solid rgba(255, 255, 255, 0.08); margin-bottom: 25px; font-size: 0.9rem; color: #fff; 
+}
+.animelib-details-grid div { display: flex; align-items: center; }
+.animelib-details-grid strong { color: var(--text-muted); font-weight: normal; margin-right: 8px; width: 110px; flex-shrink: 0; }
+
+/* ПОДСВЕТКА ЖАНРОВ */
+.animelib-genres-chips { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 25px; }
+.animelib-genres-chips span { 
+    display: inline-flex; align-items: center; background: rgba(255, 255, 255, 0.04); 
+    border: 1px solid rgba(255, 255, 255, 0.08); padding: 8px 16px; border-radius: 14px; 
+    font-size: 0.85rem; color: #f3f4f6; transition: all 0.25s ease; cursor: default;
+}
+.animelib-genres-chips span:hover { 
+    background: rgba(255, 105, 180, 0.1); border-color: var(--bocchi-pink); 
+    box-shadow: 0 4px 15px rgba(255, 105, 180, 0.25); transform: translateY(-2px); color: #fff; 
 }
 
-/* ======================================================= */
-/* МЕДИА-ЗАПРОС ДЛЯ ПК (Горизонтальные экраны)            */
-/* ======================================================= */
-@media (min-width: 750px) {
-    .main-container {
-        min-height: 440px; 
-    }
-    .sidebar { 
-        max-width: 250px; 
-    }
-    .sidebar-content { 
-        flex-direction: column; 
-        padding: 35px 20px; 
-    }
-}
+.animelib-sub-heading { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; margin: 0 0 10px 0; color: var(--bocchi-pink); }
+.animelib-summary { font-size: 0.9rem; color: #d1d5db; line-height: 1.6; margin: 0; }
 
-/* ======================================================= */
-/* МЕДИА-ЗАПРОС ДЛЯ СМАРТФОНОВ                             */
-/* ======================================================= */
+/* МИНИ ДОК СЕЗОНОВ В МОДАЛКАХ */
+.modal-seasons-dock-wrapper { position: absolute; bottom: 20px; left: 0; width: 100%; display: flex; justify-content: center; z-index: 10; pointer-events: none; }
+.modal-seasons-dock {
+    background: rgba(15, 17, 23, 0.65); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08); padding: 6px; border-radius: 30px; display: flex; gap: 4px; position: relative; pointer-events: auto;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+.season-slider-bg {
+    position: absolute; height: calc(100% - 12px); top: 6px; left: 6px; 
+    background: linear-gradient(135deg, rgba(255, 105, 180, 0.2), rgba(0, 191, 255, 0.2));
+    border: 1px solid rgba(255, 105, 180, 0.3); border-radius: 24px; z-index: 1; 
+    transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1); pointer-events: none;
+}
+.season-dock-item {
+    background: transparent; border: none; position: relative; z-index: 2; padding: 10px 20px; border-radius: 24px; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; cursor: pointer; transition: color 0.2s ease;
+}
+.season-dock-item:hover { color: #fff; }
+.season-dock-item.active { color: #fff; font-weight: bold; }
+
+/* СОПУТСТВУЮЩИЕ ИНТЕРФЕЙСЫ */
+.modal-profile-header { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; margin-top: 10px; }
+.modal-profile-avatar { width: 52px; height: 52px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.1); object-fit: cover; }
+.modal-profile-meta h3 { color: #fff; margin: 0; font-size: 1.15rem; font-weight: bold; }
+.modal-profile-meta p { color: #64748b; margin: 3px 0 0 0; font-size: 0.8rem; font-family: monospace; }
+.modal-profile-text { font-size: 0.88rem; color: #94a3b8; line-height: 1.5; margin: 0 0 20px 0; }
+.modal-profile-link { display: block; width: 100%; text-align: center; background: #1b2838; border: 1px solid rgba(255,255,255,0.1); color: #fff; text-decoration: none; padding: 12px; border-radius: 12px; font-size: 0.85rem; box-sizing: border-box; cursor: pointer; transition: background 0.2s; }
+.modal-profile-link:hover { background: rgba(255,255,255,0.05); }
+.close-modal-btn { background: #22252e; text-align: center; }
+
+.clipboard-tooltip { position: absolute; background: rgba(88, 101, 242, 0.95); color: #fff; padding: 6px 14px; border-radius: 8px; font-size: 0.75rem; font-weight: bold; pointer-events: none; z-index: 99999; box-shadow: 0 4px 15px rgba(88, 101, 242, 0.4); transform: translate(-50%, -100%); animation: tooltip-bounce 0.2s ease-out forwards; border: 1px solid rgba(255, 255, 255, 0.2); font-family: 'JetBrains Mono', monospace; }
+.clipboard-tooltip.fade-out { opacity: 0; transform: translate(-50%, -130%); transition: opacity 0.3s ease, transform 0.3s ease; }
+@keyframes tooltip-bounce { 0% { transform: translate(-50%, -70%); opacity: 0; } 100% { transform: translate(-50%, -100%); opacity: 1; } }
+
+@keyframes float { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(20px, 15px) scale(1.05); } }
+
+/* Адаптивность */
+@media (min-width: 750px) { .sidebar { max-width: 250px; } .sidebar-content { flex-direction: column; padding: 35px 20px; } }
 @media screen and (max-width: 749px) {
-    .main-container {
-        flex-direction: column;
-        align-items: center;
+    .main-container { flex-direction: column; align-items: center; }
+    .sidebar { width: 100%; max-width: 550px; background-image: none !important; background: rgba(255, 255, 255, 0.03); }
+    .sidebar-content { padding: 30px 20px; background: transparent !important; }
+    .section-title { text-align: center; }
+    .projects-grid { justify-content: center; }
+    .project-tile { flex: 1 1 100%; max-width: 550px; height: auto; min-height: 260px; }
+    .tile-desc { overflow-y: visible; }
+    
+    .tg-dock-nav { bottom: 15px; width: calc(100% - 30px); max-width: 360px; justify-content: space-around; }
+    .dock-item span { display: none; }
+    .dock-item { padding: 12px 18px; }
+    
+    .animelib-content-wrapper { flex-direction: column; align-items: center; padding: 20px; padding-top: 40px; gap: 20px; }
+    .animelib-left-meta { width: 100%; max-width: 180px; }
+    .animelib-right-info { text-align: center; }
+    .animelib-badges-row, .animelib-genres-chips { justify-content: center; }
+    .animelib-details-grid { grid-template-columns: 1fr; text-align: left; }
+    .animelib-details-grid div { justify-content: flex-start; }
+    .animelib-modal-container { height: 85vh; }
+}
+
+@media screen and (max-width: 749px) {
+    /* Родителю даем относительный контекст и резервируем место снизу под навбар */
+    .animelib-modal-container {
+        position: relative !important;
+        padding-bottom: 70px !important; /* Сюда встанет наш переключатель сезонов */
     }
 
-    .sidebar {
-        width: 100%;
-        max-width: 550px; 
-        height: auto; 
-        background-image: none !important; 
-        background: rgba(255, 255, 255, 0.03); 
+    /* 1. Запрещаем всему документу дергаться вбок */
+    html, body {
+        overflow-x: hidden !important;
+        position: relative;
     }
 
-    .sidebar-content {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 30px 20px;
-        gap: 15px; 
-        background: transparent !important; 
+    /* 2. Ограничиваем навбар сезонов, чтобы он не распирал модалку */
+    .season-dock-nav {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+        
+        /* Вместо фиксированных 320px даем адаптивную ширину */
+        width: 100% !important; 
+        max-width: 280px !important; /* Сужаем рамки, чтобы гарантированно влезть в любой телефон */
+        margin: 20px auto 10px auto !important; /* Центрируем сам блок внутри модалки */
+        
+        display: flex !important;
+        justify-content: space-between !important; /* Раскидываем кнопки равномерно внутри этих 280px */
+        gap: 0 !important;
+        box-sizing: border-box;
     }
 
-    .section-title {
-        text-align: center;
+    /* 3. Убедимся, что общая подложка модалки тоже не пытается уйти в закат */
+    .animelib-modal-container {
+        width: 90% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
     }
-
-    .projects-grid {
-        justify-content: center; 
-    }
-
-    .project-tile {
-        flex: 1 1 100%;
-        max-width: 550px; 
-        height: auto; 
-        min-height: 260px;
-    }
-
-    .tile-desc {
-        overflow-y: visible; 
+    /* Линия ползунка теперь будет позиционироваться идеально, */
+    /* так как сам навбар не деформирован флексами родителя */
+    .season-slider-line {
+        bottom: 0 !important;
+        height: 2px !important;
     }
 }
