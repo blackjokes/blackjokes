@@ -70,7 +70,7 @@
                         <h2>Стек</h2>
                         <ul>
                             <li><i class="fab fa-python tech-icon"></i> Python</li>
-                            <li><i class="fab fa-html5 tech-icon"></i> HTML5</li>
+                            <li><i class="fab fa-html5 tech-icon"></i> HTML</li>
                             <li><i class="fab fa-git-alt tech-icon"></i> Git</li>
                         </ul>
                     </section>
@@ -408,7 +408,7 @@
 
     </div>
 
-    <!-- КОРНЕВОЙ ОВЕРЛЕЙ ДЛЯ МОДАЛОК -->
+    <!-- МОДАЛЬНЫЕ ОКНА -->
     <div class="modal-root-overlay" id="globalModalOverlay">
         
         <!-- МОДАЛКА: АНГЕЛ ПО СОСЕДСТВУ -->
@@ -481,8 +481,7 @@
                     </div>
                 </div>
             </div>
-
-            <div class="modal-seasons-dock-wrapper">
+            <div class="modal-seasons-dock-wrapper" id="dock-anime">
                 <nav class="modal-seasons-dock">
                     <div class="season-slider-bg"></div>
                     <button class="season-dock-item active" data-index="0">1 сезон</button>
@@ -490,7 +489,6 @@
                 </nav>
             </div>
         </div>
-
         <!-- МОДАЛКА: OREGAIRU ANIME -->
         <div class="animelib-modal-container" id="modal-anime-oregairu">
             <button class="close-modal-x">&times;</button>
@@ -678,8 +676,8 @@
             <div class="modal-seasons-dock-wrapper">
                 <nav class="modal-seasons-dock">
                     <div class="season-slider-bg"></div>
-                    <button class="season-dock-item active" data-index="0">1 сезон (Часть 1)</button>
-                    <button class="season-dock-item" data-index="1">1 сезон (Часть 2)</button>
+                    <button class="season-dock-item active" data-index="0">1 сезон (1)</button>
+                    <button class="season-dock-item" data-index="1">1 сезон (2)</button>
                 </nav>
             </div>
         </div>
@@ -1003,182 +1001,6 @@
             </div>
         </div>
 
-    <!-- СКРИПТОВАЯ ЧАСТЬ -->
-    <script>
-        document.querySelectorAll('.discord-copy-btn').forEach(button => {
-            button.addEventListener('click', function(e) {
-                e.preventDefault();
-                const textToCopy = this.getAttribute('data-clipboard');
-                if (!textToCopy) return;
-
-                navigator.clipboard.writeText(textToCopy).then(() => {
-                    const tooltip = document.createElement('div');
-                    tooltip.className = 'clipboard-tooltip';
-                    tooltip.innerText = 'Скопировано!';
-                    document.body.appendChild(tooltip);
-                    tooltip.style.left = `${e.pageX}px`;
-                    tooltip.style.top = `${e.pageY - 30}px`;
-                    setTimeout(() => {
-                        tooltip.classList.add('fade-out');
-                        setTimeout(() => tooltip.remove(), 300);
-                    }, 1000);
-                }).catch(err => console.error(err));
-            });
-        });
-
-        const dockItems = document.querySelectorAll('.dock-item');
-        const screens = document.querySelectorAll('.screen-content');
-        const slider = document.querySelector('.dock-bg-slider');
-
-        function moveSlider(activeItem) {
-            if (!activeItem || !slider) return;
-            slider.style.width = `${activeItem.offsetWidth}px`;
-            slider.style.left = `${activeItem.offsetLeft}px`;
-        }
-
-        function activateScreen(screenId) {
-            const targetItem = document.querySelector(`.dock-item[data-screen="${screenId}"]`);
-            const targetScreen = document.getElementById(screenId);
-
-            if (!targetItem || !targetScreen) return;
-
-            dockItems.forEach(i => i.classList.remove('active'));
-            targetItem.classList.add('active');
-            moveSlider(targetItem);
-
-            screens.forEach(screen => screen.classList.remove('active'));
-            targetScreen.classList.add('active');
-
-            localStorage.setItem('lastActiveScreen', screenId);
-        }
-
-        window.addEventListener('load', () => {
-            const savedScreen = localStorage.getItem('lastActiveScreen') || 'screen-main';
-            activateScreen(savedScreen);
-            setTimeout(() => {
-                const activeItem = document.querySelector('.dock-item.active');
-                if(activeItem) moveSlider(activeItem);
-            }, 50);
-        });
-
-        dockItems.forEach(item => {
-            item.addEventListener('click', () => {
-                const targetScreen = item.getAttribute('data-screen');
-                activateScreen(targetScreen);
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-        });
-
-        const globalModalOverlay = document.getElementById('globalModalOverlay');
-        
-        function moveSeasonSlider(activeBtn, modalContainer) {
-            const seasonSlider = modalContainer.querySelector('.season-slider-bg');
-            if (!activeBtn || !seasonSlider) return;
-            seasonSlider.style.width = `${activeBtn.offsetWidth}px`;
-            seasonSlider.style.left = `${activeBtn.offsetLeft}px`;
-        }
-
-        document.querySelectorAll('.open-modal-trigger').forEach(trigger => {
-            trigger.addEventListener('click', (e) => {
-                e.preventDefault();
-                const modalId = trigger.getAttribute('data-modal');
-                const targetModal = document.getElementById(modalId);
-                
-                if (targetModal) {
-                    globalModalOverlay.classList.add('open');
-                    document.querySelectorAll('.animelib-modal-container, .profile-small-modal').forEach(m => m.classList.remove('active'));
-                    targetModal.classList.add('active');
-                    
-                    const firstSeasonBtn = targetModal.querySelector('.season-dock-item');
-                    if (firstSeasonBtn) {
-                        targetModal.querySelectorAll('.season-dock-item').forEach(b => b.classList.remove('active'));
-                        firstSeasonBtn.classList.add('active');
-                        moveSeasonSlider(firstSeasonBtn, targetModal);
-                        
-                        const track = targetModal.querySelector('.modal-slider-track');
-                        if (track) track.style.transform = `translateX(0%)`;
-                    }
-                }
-            });
-        });
-
-        document.querySelectorAll('.season-dock-item').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const modalContainer = this.closest('.animelib-modal-container');
-                const pageIndex = parseInt(this.getAttribute('data-index'));
-                const track = modalContainer.querySelector('.modal-slider-track');
-                
-                modalContainer.querySelectorAll('.season-dock-item').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                
-                moveSeasonSlider(this, modalContainer);
-                
-                if (track) {
-                    track.style.transform = `translateX(${pageIndex * -100}%)`;
-                }
-            });
-        });
-
-        function closeGlobalModal() {
-            globalModalOverlay.classList.remove('open');
-        }
-
-        globalModalOverlay.addEventListener('click', (e) => {
-            if (e.target === globalModalOverlay || e.target.classList.contains('close-modal-x') || e.target.classList.contains('close-modal-btn')) {
-                closeGlobalModal();
-            }
-        });
-
-        window.addEventListener('resize', () => {
-            const activeItem = document.querySelector('.dock-item.active');
-            if(activeItem) moveSlider(activeItem);
-            
-            document.querySelectorAll('.animelib-modal-container').forEach(modal => {
-                const activeSeasonBtn = modal.querySelector('.season-dock-item.active');
-                if(activeSeasonBtn) moveSeasonSlider(activeSeasonBtn, modal);
-            });
-        });
-
-        function checkBirthday() {
-            const today = new Date();
-            if (today.getDate() === 19 && today.getMonth() === 1) {
-                const avatarBlock = document.getElementById('avatarBlock');
-                if (avatarBlock) avatarBlock.classList.add('birthday-mode');
-                const greeting = document.getElementById('greeting');
-                if (greeting) greeting.innerText = "> С Днём Рождения меня! 🎂";
-                const bdaySubtitle = document.getElementById('bdaySubtitle');
-                if (bdaySubtitle) bdaySubtitle.innerText = "✦ Сегодня официальный день отдыха и праздника!";
-            }
-        }
-        window.addEventListener('DOMContentLoaded', checkBirthday);
-
-        function copyEpicHandle() {
-            const handleText = document.getElementById("epicHandle").innerText;
-            navigator.clipboard.writeText(handleText).then(() => {
-                const originalText = handleText;
-                const handleElement = document.getElementById("epicHandle");
-                handleElement.innerText = "Скопировано!";
-                handleElement.style.color = "#00ff66"; // подсветится твоим зеленым
-                setTimeout(() => {
-                    handleElement.innerText = originalText;
-                    handleElement.style.color = "";
-                }, 1000);
-            });
-        }
-
-        function copyXboxHandle() {
-            const handleText = document.getElementById("xboxHandle").innerText;
-            navigator.clipboard.writeText(handleText).then(() => {
-                const originalText = handleText;
-                const handleElement = document.getElementById("xboxHandle");
-                handleElement.innerText = "Скопировано!";
-                handleElement.style.color = "#00ff66";
-                setTimeout(() => {
-                    handleElement.innerText = originalText;
-                    handleElement.style.color = "";
-                }, 1000);
-            });
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

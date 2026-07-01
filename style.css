@@ -23,7 +23,15 @@ body {
 
 body::before, body::after {
     content: ''; position: absolute; border-radius: 50%; filter: blur(100px); z-index: -1;
-    will-change: transform; transform: translateZ(0); backface-visibility: hidden;
+    
+    /* Ультимативное аппаратное ускорение против черных квадратов */
+    will-change: filter, transform;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    
+    /* ... твои остальные свойства цвета, размеров и позиционирования кругов ... */
 }
 body::before { width: 450px; height: 450px; background: var(--bocchi-pink); opacity: 0.25; top: 5%; left: 10%; animation: float 8s ease-in-out infinite alternate; }
 body::after { width: 500px; height: 500px; background: var(--ryo-blue); opacity: 0.20; top: 35%; right: 10%; animation: float 10s ease-in-out infinite alternate-reverse; }
@@ -331,6 +339,16 @@ header h1 { font-size: clamp(1.3rem, 4vw, 1.8rem); margin-bottom: 6px; backgroun
     .animelib-modal-container { height: 85vh; }
 }
 
+/* Выносим док из потока модалки и привязываем к низу */
+.modal-tabs-dock-wrapper {
+    position: absolute; /* Или relative, если хочешь, чтобы он скроллился вместе с модалкой */
+    top: calc(80vh + 20px); /* 80vh - высота твоей модалки + отступ */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    pointer-events: auto;
+}
+
 @media screen and (max-width: 749px) {
     /* Родителю даем относительный контекст и резервируем место снизу под навбар */
     .animelib-modal-container {
@@ -374,4 +392,17 @@ header h1 { font-size: clamp(1.3rem, 4vw, 1.8rem); margin-bottom: 6px; backgroun
         bottom: 0 !important;
         height: 2px !important;
     }
+    .modal-tabs-dock-wrapper {
+        top: calc(85vh + 15px);
+    }
+}
+
+/* Блокировка скролла основного сайта при открытой модалке */
+html.modal-open,
+body.modal-open {
+    overflow: hidden !important;
+    height: 100vh !important;
+    position: fixed !important;
+    width: 100% !important;
+    touch-action: none; /* Запрещает свайпы фона на смартфонах */
 }
